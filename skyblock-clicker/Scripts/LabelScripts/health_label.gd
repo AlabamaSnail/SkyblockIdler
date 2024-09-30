@@ -1,6 +1,5 @@
 extends Label
 
-var Health = 0
 
 func _ready():
 	pass
@@ -9,9 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	Health = (StatHolder.combat * 3) + (StatHolder.catacombs * 3) + (StatHolder.carpentry * 2) + (StatHolder.enchanting * 1) + (StatHolder.taming * 1) + (StatHolder.farming * 4) + (StatHolder.fishing * 3)
+	StatHolder.health = (StatHolder.combat * 3) + (StatHolder.catacombs * 3) + (StatHolder.carpentry * 2) + (StatHolder.enchanting * 1) + (StatHolder.taming * 1) + (StatHolder.farming * 4) + (StatHolder.fishing * 3)
 
-	self.text = "Health: " + str(Health)    # Set Skill
+	self.text = "Health: " + str(StatHolder.health)    # Set Skill
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=30 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/buttonpress.gd" id="2_ci5qi"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
@@ -11,15 +11,16 @@
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_progress_bar.gd" id="7_tdak0"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_level_label.gd" id="8_s4d07"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/health_label.gd" id="11_8mr7h"]
-[ext_resource type="Script" path="res://strength_label.gd" id="12_tbkup"]
+[ext_resource type="Script" path="res://Scripts/LabelScripts/strength_label.gd" id="12_tbkup"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/defense_label.gd" id="13_wp24o"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/intelligence_label.gd" id="14_4hf3v"]
 [ext_resource type="Script" path="res://Moneyforaging_progress_bar.gd" id="15_0tea2"]
-[ext_resource type="Script" path="res://money_label.gd" id="16_l64xj"]
-[ext_resource type="Script" path="res://UTforaging.gd" id="17_vryef"]
-[ext_resource type="Script" path="res://UTmining.gd" id="18_bl753"]
-[ext_resource type="Script" path="res://UTfarming.gd" id="19_lcnbv"]
-[ext_resource type="Script" path="res://UTfishing.gd" id="20_f2y76"]
+[ext_resource type="Script" path="res://Scripts/LabelScripts/money_label.gd" id="16_l64xj"]
+[ext_resource type="Script" path="res://m_mining_progress_bar.gd" id="16_ovdig"]
+[ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTforaging.gd" id="17_vryef"]
+[ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTmining.gd" id="18_bl753"]
+[ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfarming.gd" id="19_lcnbv"]
+[ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfishing.gd" id="20_f2y76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -294,7 +295,6 @@ offset_top = 21.0
 offset_right = 115.0
 offset_bottom = 57.0
 text = "CLICK ME"
-script = ExtResource("2_ci5qi")
 
 [node name="MFStacksUp" type="Button" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 256.0
@@ -335,6 +335,55 @@ text = "Money Per: $0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
+[node name="MiningBar" type="Node2D" parent="Clickers/MoneyBars"]
+position = Vector2(-0.000681262, 60.0003)
+
+[node name="MMiningButton" type="Button" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+
+[node name="MMStacksUp" type="Button" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 256.0
+offset_top = 22.0
+offset_right = 273.0
+offset_bottom = 53.0
+text = "↑"
+
+[node name="MMStacksDown" type="Button" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 275.0
+offset_top = 22.0
+offset_right = 291.0
+offset_bottom = 53.0
+text = "↓"
+
+[node name="MMiningProgressBar" type="ProgressBar" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("16_ovdig")
+
+[node name="MMiningLabel" type="Label" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Mining"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="MMiningStacks" type="Label" parent="Clickers/MoneyBars/MiningBar"]
+offset_left = 115.0
+offset_top = 3.0
+offset_right = 256.0
+offset_bottom = 23.0
+text = "Money Per: $0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
 [node name="MoneyLabel" type="Label" parent="."]
 offset_left = 972.0
 offset_right = 1191.0
@@ -358,22 +407,22 @@ horizontal_alignment = 1
 
 [node name="Foraging" type="Button" parent="UpgradePanel"]
 layout_mode = 2
-text = "Axe | $20"
+text = "Lvl. 0 Axe | $20"
 script = ExtResource("17_vryef")
 
 [node name="Mining" type="Button" parent="UpgradePanel"]
 layout_mode = 2
-text = "Pickaxe | $20"
+text = "Lvl. 0 Pickaxe | $20"
 script = ExtResource("18_bl753")
 
 [node name="Farming" type="Button" parent="UpgradePanel"]
 layout_mode = 2
-text = "Hoe | $20"
+text = "Lvl. 0 Hoe | $20"
 script = ExtResource("19_lcnbv")
 
 [node name="Fishing" type="Button" parent="UpgradePanel"]
 layout_mode = 2
-text = "Fishing Rod | $20"
+text = "Lvl. 0 Fishing Rod | $20"
 script = ExtResource("20_f2y76")
 
 [connection signal="pressed" from="Clickers/SkillBars/ForagingBar/ForagingButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_foraging_Button_Click"]
@@ -386,6 +435,9 @@ script = ExtResource("20_f2y76")
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MForagingButton" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksUp" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksDown" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/MiningBar/MMiningButton" to="Clickers/MoneyBars/MiningBar/MMiningProgressBar" method="_on_m_mining_button_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/MiningBar/MMStacksUp" to="Clickers/MoneyBars/MiningBar/MMiningProgressBar" method="_on_mm_stacks_up_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/MiningBar/MMStacksDown" to="Clickers/MoneyBars/MiningBar/MMiningProgressBar" method="_on_mm_stacks_down_pressed"]
 [connection signal="pressed" from="UpgradePanel/Foraging" to="UpgradePanel/Foraging" method="_on_pressed"]
 [connection signal="pressed" from="UpgradePanel/Mining" to="UpgradePanel/Mining" method="_on_pressed"]
 [connection signal="pressed" from="UpgradePanel/Farming" to="UpgradePanel/Farming" method="_on_pressed"]

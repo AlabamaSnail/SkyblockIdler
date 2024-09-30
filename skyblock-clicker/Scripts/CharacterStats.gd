@@ -22,6 +22,10 @@ var social = 0
 
 # Misc
 var money = 0
+var strength = 0
+var intelligence = 0
+var defense = 0
+var health = 0
 
 
 # Skill Tools
