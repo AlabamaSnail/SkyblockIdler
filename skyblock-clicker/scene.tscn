@@ -1,0 +1,356 @@
+[gd_scene load_steps=24 format=3 uid="uid://gvabfncr6aor"]
+
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/buttonpress.gd" id="2_ci5qi"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
+[ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_level_label.gd" id="4_erlrf"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/farming_progress_bar.gd" id="5_0qglc"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/mining_progress_bar.gd" id="5_xunse"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/mining_level_label.gd" id="6_cgema"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/farming_level_label.gd" id="6_w5ftk"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_progress_bar.gd" id="7_tdak0"]
+[ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_level_label.gd" id="8_s4d07"]
+[ext_resource type="Script" path="res://Scripts/LabelScripts/health_label.gd" id="11_8mr7h"]
+[ext_resource type="Script" path="res://strength_label.gd" id="12_tbkup"]
+[ext_resource type="Script" path="res://Scripts/LabelScripts/defense_label.gd" id="13_wp24o"]
+[ext_resource type="Script" path="res://Scripts/LabelScripts/intelligence_label.gd" id="14_4hf3v"]
+[ext_resource type="Script" path="res://Moneyforaging_progress_bar.gd" id="15_0tea2"]
+[ext_resource type="Script" path="res://money_label.gd" id="16_l64xj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
+font_size = 14
+
+[sub_resource type="QuadMesh" id="QuadMesh_3d2pg"]
+
+[sub_resource type="Gradient" id="Gradient_2ou42"]
+colors = PackedColorArray(0.552956, 0.552956, 0.552954, 1, 0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ocew"]
+gradient = SubResource("Gradient_2ou42")
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpea0"]
+line_spacing = 0.0
+font_size = 36
+font_color = Color(0, 0, 0.498039, 1)
+outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0qhh"]
+line_spacing = 0.0
+font_size = 36
+font_color = Color(0, 0.513726, 0.177986, 1)
+outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_8yhlx"]
+font_size = 50
+font_color = Color(0.705418, 0.699021, 1.15514e-06, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Scene" type="Node2D"]
+
+[node name="CharacterStatHolder" type="Node2D" parent="."]
+script = ExtResource("3_yepde")
+
+[node name="StatLabels" type="Node2D" parent="."]
+
+[node name="HealthLabel" type="Label" parent="StatLabels"]
+offset_left = 1817.0
+offset_right = 1920.0
+offset_bottom = 20.0
+text = "Health: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("11_8mr7h")
+
+[node name="StrengthLabel" type="Label" parent="StatLabels"]
+offset_left = 1817.0
+offset_top = 16.0
+offset_right = 1920.0
+offset_bottom = 36.0
+text = "Strength: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("12_tbkup")
+
+[node name="DefenseLabel" type="Label" parent="StatLabels"]
+offset_left = 1817.0
+offset_top = 33.0
+offset_right = 1920.0
+offset_bottom = 53.0
+text = "Defense: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("13_wp24o")
+
+[node name="IntelligenceLabel" type="Label" parent="StatLabels"]
+layout_direction = 1
+offset_left = 1817.0
+offset_top = 48.0
+offset_right = 1920.0
+offset_bottom = 68.0
+text = "Intelligence: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("14_4hf3v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(147.119, 540.044)
+rotation = 1.5708
+scale = Vector2(1080.34, 294.602)
+mesh = SubResource("QuadMesh_3d2pg")
+texture = SubResource("GradientTexture1D_4ocew")
+
+[node name="SkillBars" type="Node2D" parent="MeshInstance2D"]
+position = Vector2(-0.453603, 0.499382)
+rotation = -1.5708
+scale = Vector2(0.00339441, 0.000925638)
+
+[node name="Label" type="Label" parent="MeshInstance2D/SkillBars"]
+offset_left = 11.0
+offset_top = -49.9999
+offset_right = 271.0
+offset_bottom = 13.0001
+text = "Skills"
+label_settings = SubResource("LabelSettings_tpea0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForagingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+
+[node name="ForagingButton" type="Button" parent="MeshInstance2D/SkillBars/ForagingBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="ForagingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/ForagingBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("3_kip2h")
+
+[node name="ForagingLabel" type="Label" parent="MeshInstance2D/SkillBars/ForagingBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Foraging Skill"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="ForagingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/ForagingBar"]
+offset_left = 133.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 22.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("4_erlrf")
+
+[node name="FarmingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+position = Vector2(0, 118)
+
+[node name="FarmingButton" type="Button" parent="MeshInstance2D/SkillBars/FarmingBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="FarmingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/FarmingBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("5_0qglc")
+
+[node name="FarmingLabel" type="Label" parent="MeshInstance2D/SkillBars/FarmingBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Farming Skill"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="FarmingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/FarmingBar"]
+offset_left = 133.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 22.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("6_w5ftk")
+
+[node name="FishingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+position = Vector2(0, 176)
+
+[node name="FishingButton" type="Button" parent="MeshInstance2D/SkillBars/FishingBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="FishingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/FishingBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("7_tdak0")
+
+[node name="FishingLabel" type="Label" parent="MeshInstance2D/SkillBars/FishingBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Fishing Skill"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="FishingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/FishingBar"]
+offset_left = 133.0
+offset_top = 2.0
+offset_right = 236.0
+offset_bottom = 22.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("8_s4d07")
+
+[node name="MiningBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+position = Vector2(0, 59)
+
+[node name="MiningButton" type="Button" parent="MeshInstance2D/SkillBars/MiningBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="MiningProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/MiningBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("5_xunse")
+
+[node name="MiningLabel" type="Label" parent="MeshInstance2D/SkillBars/MiningBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Mining Skill"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="MiningLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/MiningBar"]
+offset_left = 133.0
+offset_right = 236.0
+offset_bottom = 20.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("6_cgema")
+
+[node name="MoneyBars" type="Node2D" parent="MeshInstance2D"]
+position = Vector2(-0.194424, 0.499382)
+rotation = -1.5708
+scale = Vector2(0.00339441, 0.000925638)
+
+[node name="Label" type="Label" parent="MeshInstance2D/MoneyBars"]
+offset_left = 11.0
+offset_top = -54.0001
+offset_right = 271.0
+offset_bottom = 8.99994
+text = "Money"
+label_settings = SubResource("LabelSettings_q0qhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForagingBar" type="Node2D" parent="MeshInstance2D/MoneyBars"]
+
+[node name="MForagingButton" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="MFStacksUp" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 256.0
+offset_top = 22.0
+offset_right = 273.0
+offset_bottom = 53.0
+text = "↑"
+
+[node name="MFStacksDown" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 275.0
+offset_top = 22.0
+offset_right = 291.0
+offset_bottom = 53.0
+text = "↓"
+
+[node name="MForagingProgressBar" type="ProgressBar" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("15_0tea2")
+
+[node name="MForagingLabel" type="Label" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Foraging"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="MForagingStacks" type="Label" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 115.0
+offset_top = 3.0
+offset_right = 256.0
+offset_bottom = 23.0
+text = "Money Per: $0"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="LevelUpForgingTool" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+offset_left = 299.0
+offset_top = 19.0
+offset_right = 403.0
+offset_bottom = 55.0
+text = "CLICK ME"
+script = ExtResource("2_ci5qi")
+
+[node name="MoneyLabel" type="Label" parent="."]
+offset_left = 972.0
+offset_right = 1191.0
+offset_bottom = 69.0
+text = "Money: 0"
+label_settings = SubResource("LabelSettings_8yhlx")
+horizontal_alignment = 1
+script = ExtResource("16_l64xj")
+
+[connection signal="pressed" from="MeshInstance2D/SkillBars/ForagingBar/ForagingButton" to="MeshInstance2D/SkillBars/ForagingBar/ForagingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/FarmingBar/FarmingButton" to="MeshInstance2D/SkillBars/FarmingBar/FarmingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/FarmingBar/FarmingButton" to="MeshInstance2D/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_button_pressed"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/FishingBar/FishingButton" to="MeshInstance2D/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_button_pressed"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/FishingBar/FishingButton" to="MeshInstance2D/SkillBars/FishingBar/FishingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/MiningBar/MiningButton" to="MeshInstance2D/SkillBars/MiningBar/MiningProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="MeshInstance2D/SkillBars/MiningBar/MiningButton" to="MeshInstance2D/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_button_pressed"]
+[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MForagingButton" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
+[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MFStacksUp" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
+[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MFStacksDown" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]
+[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/LevelUpForgingTool" to="MeshInstance2D/MoneyBars/ForagingBar/LevelUpForgingTool" method="_on_pressed"]
