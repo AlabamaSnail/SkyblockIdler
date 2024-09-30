@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=29 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/buttonpress.gd" id="2_ci5qi"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
@@ -16,6 +16,10 @@
 [ext_resource type="Script" path="res://Scripts/LabelScripts/intelligence_label.gd" id="14_4hf3v"]
 [ext_resource type="Script" path="res://Moneyforaging_progress_bar.gd" id="15_0tea2"]
 [ext_resource type="Script" path="res://money_label.gd" id="16_l64xj"]
+[ext_resource type="Script" path="res://UTforaging.gd" id="17_vryef"]
+[ext_resource type="Script" path="res://UTmining.gd" id="18_bl753"]
+[ext_resource type="Script" path="res://UTfarming.gd" id="19_lcnbv"]
+[ext_resource type="Script" path="res://UTfishing.gd" id="20_f2y76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -45,6 +49,11 @@ font_size = 50
 font_color = Color(0.705418, 0.699021, 1.15514e-06, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_otpwe"]
+font_size = 20
+outline_size = 2
+outline_color = Color(0.694118, 0, 0.972549, 1)
 
 [node name="Scene" type="Node2D"]
 
@@ -94,19 +103,19 @@ horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("14_4hf3v")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Clickers" type="MeshInstance2D" parent="."]
 position = Vector2(147.119, 540.044)
 rotation = 1.5708
 scale = Vector2(1080.34, 294.602)
 mesh = SubResource("QuadMesh_3d2pg")
 texture = SubResource("GradientTexture1D_4ocew")
 
-[node name="SkillBars" type="Node2D" parent="MeshInstance2D"]
+[node name="SkillBars" type="Node2D" parent="Clickers"]
 position = Vector2(-0.453603, 0.499382)
 rotation = -1.5708
 scale = Vector2(0.00339441, 0.000925638)
 
-[node name="Label" type="Label" parent="MeshInstance2D/SkillBars"]
+[node name="Label" type="Label" parent="Clickers/SkillBars"]
 offset_left = 11.0
 offset_top = -49.9999
 offset_right = 271.0
@@ -116,9 +125,9 @@ label_settings = SubResource("LabelSettings_tpea0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ForagingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+[node name="ForagingBar" type="Node2D" parent="Clickers/SkillBars"]
 
-[node name="ForagingButton" type="Button" parent="MeshInstance2D/SkillBars/ForagingBar"]
+[node name="ForagingButton" type="Button" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 11.0
 offset_top = 21.0
 offset_right = 115.0
@@ -126,14 +135,14 @@ offset_bottom = 57.0
 text = "CLICK ME"
 script = ExtResource("2_ci5qi")
 
-[node name="ForagingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/ForagingBar"]
+[node name="ForagingProgressBar" type="ProgressBar" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 117.0
 offset_top = 25.0
 offset_right = 255.0
 offset_bottom = 52.0
 script = ExtResource("3_kip2h")
 
-[node name="ForagingLabel" type="Label" parent="MeshInstance2D/SkillBars/ForagingBar"]
+[node name="ForagingLabel" type="Label" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 11.0
 offset_top = 1.0
 offset_right = 114.0
@@ -142,7 +151,7 @@ text = "Foraging Skill"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
-[node name="ForagingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/ForagingBar"]
+[node name="ForagingLevelLabel" type="Label" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 133.0
 offset_top = 2.0
 offset_right = 236.0
@@ -152,10 +161,10 @@ label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("4_erlrf")
 
-[node name="FarmingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+[node name="FarmingBar" type="Node2D" parent="Clickers/SkillBars"]
 position = Vector2(0, 118)
 
-[node name="FarmingButton" type="Button" parent="MeshInstance2D/SkillBars/FarmingBar"]
+[node name="FarmingButton" type="Button" parent="Clickers/SkillBars/FarmingBar"]
 offset_left = 11.0
 offset_top = 21.0
 offset_right = 115.0
@@ -163,14 +172,14 @@ offset_bottom = 57.0
 text = "CLICK ME"
 script = ExtResource("2_ci5qi")
 
-[node name="FarmingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/FarmingBar"]
+[node name="FarmingProgressBar" type="ProgressBar" parent="Clickers/SkillBars/FarmingBar"]
 offset_left = 117.0
 offset_top = 25.0
 offset_right = 255.0
 offset_bottom = 52.0
 script = ExtResource("5_0qglc")
 
-[node name="FarmingLabel" type="Label" parent="MeshInstance2D/SkillBars/FarmingBar"]
+[node name="FarmingLabel" type="Label" parent="Clickers/SkillBars/FarmingBar"]
 offset_left = 11.0
 offset_top = 1.0
 offset_right = 114.0
@@ -179,7 +188,7 @@ text = "Farming Skill"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
-[node name="FarmingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/FarmingBar"]
+[node name="FarmingLevelLabel" type="Label" parent="Clickers/SkillBars/FarmingBar"]
 offset_left = 133.0
 offset_top = 2.0
 offset_right = 236.0
@@ -189,10 +198,10 @@ label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("6_w5ftk")
 
-[node name="FishingBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+[node name="FishingBar" type="Node2D" parent="Clickers/SkillBars"]
 position = Vector2(0, 176)
 
-[node name="FishingButton" type="Button" parent="MeshInstance2D/SkillBars/FishingBar"]
+[node name="FishingButton" type="Button" parent="Clickers/SkillBars/FishingBar"]
 offset_left = 11.0
 offset_top = 21.0
 offset_right = 115.0
@@ -200,14 +209,14 @@ offset_bottom = 57.0
 text = "CLICK ME"
 script = ExtResource("2_ci5qi")
 
-[node name="FishingProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/FishingBar"]
+[node name="FishingProgressBar" type="ProgressBar" parent="Clickers/SkillBars/FishingBar"]
 offset_left = 117.0
 offset_top = 25.0
 offset_right = 255.0
 offset_bottom = 52.0
 script = ExtResource("7_tdak0")
 
-[node name="FishingLabel" type="Label" parent="MeshInstance2D/SkillBars/FishingBar"]
+[node name="FishingLabel" type="Label" parent="Clickers/SkillBars/FishingBar"]
 offset_left = 11.0
 offset_top = 1.0
 offset_right = 114.0
@@ -216,7 +225,7 @@ text = "Fishing Skill"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
-[node name="FishingLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/FishingBar"]
+[node name="FishingLevelLabel" type="Label" parent="Clickers/SkillBars/FishingBar"]
 offset_left = 133.0
 offset_top = 2.0
 offset_right = 236.0
@@ -226,10 +235,10 @@ label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("8_s4d07")
 
-[node name="MiningBar" type="Node2D" parent="MeshInstance2D/SkillBars"]
+[node name="MiningBar" type="Node2D" parent="Clickers/SkillBars"]
 position = Vector2(0, 59)
 
-[node name="MiningButton" type="Button" parent="MeshInstance2D/SkillBars/MiningBar"]
+[node name="MiningButton" type="Button" parent="Clickers/SkillBars/MiningBar"]
 offset_left = 11.0
 offset_top = 21.0
 offset_right = 115.0
@@ -237,14 +246,14 @@ offset_bottom = 57.0
 text = "CLICK ME"
 script = ExtResource("2_ci5qi")
 
-[node name="MiningProgressBar" type="ProgressBar" parent="MeshInstance2D/SkillBars/MiningBar"]
+[node name="MiningProgressBar" type="ProgressBar" parent="Clickers/SkillBars/MiningBar"]
 offset_left = 117.0
 offset_top = 25.0
 offset_right = 255.0
 offset_bottom = 52.0
 script = ExtResource("5_xunse")
 
-[node name="MiningLabel" type="Label" parent="MeshInstance2D/SkillBars/MiningBar"]
+[node name="MiningLabel" type="Label" parent="Clickers/SkillBars/MiningBar"]
 offset_left = 11.0
 offset_top = 1.0
 offset_right = 114.0
@@ -253,7 +262,7 @@ text = "Mining Skill"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
-[node name="MiningLevelLabel" type="Label" parent="MeshInstance2D/SkillBars/MiningBar"]
+[node name="MiningLevelLabel" type="Label" parent="Clickers/SkillBars/MiningBar"]
 offset_left = 133.0
 offset_right = 236.0
 offset_bottom = 20.0
@@ -262,12 +271,12 @@ label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("6_cgema")
 
-[node name="MoneyBars" type="Node2D" parent="MeshInstance2D"]
+[node name="MoneyBars" type="Node2D" parent="Clickers"]
 position = Vector2(-0.194424, 0.499382)
 rotation = -1.5708
 scale = Vector2(0.00339441, 0.000925638)
 
-[node name="Label" type="Label" parent="MeshInstance2D/MoneyBars"]
+[node name="Label" type="Label" parent="Clickers/MoneyBars"]
 offset_left = 11.0
 offset_top = -54.0001
 offset_right = 271.0
@@ -277,9 +286,9 @@ label_settings = SubResource("LabelSettings_q0qhh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ForagingBar" type="Node2D" parent="MeshInstance2D/MoneyBars"]
+[node name="ForagingBar" type="Node2D" parent="Clickers/MoneyBars"]
 
-[node name="MForagingButton" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MForagingButton" type="Button" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 11.0
 offset_top = 21.0
 offset_right = 115.0
@@ -287,28 +296,28 @@ offset_bottom = 57.0
 text = "CLICK ME"
 script = ExtResource("2_ci5qi")
 
-[node name="MFStacksUp" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MFStacksUp" type="Button" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 256.0
 offset_top = 22.0
 offset_right = 273.0
 offset_bottom = 53.0
 text = "↑"
 
-[node name="MFStacksDown" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MFStacksDown" type="Button" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 275.0
 offset_top = 22.0
 offset_right = 291.0
 offset_bottom = 53.0
 text = "↓"
 
-[node name="MForagingProgressBar" type="ProgressBar" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MForagingProgressBar" type="ProgressBar" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 117.0
 offset_top = 25.0
 offset_right = 255.0
 offset_bottom = 52.0
 script = ExtResource("15_0tea2")
 
-[node name="MForagingLabel" type="Label" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MForagingLabel" type="Label" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 11.0
 offset_top = 1.0
 offset_right = 114.0
@@ -317,7 +326,7 @@ text = "Foraging"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
-[node name="MForagingStacks" type="Label" parent="MeshInstance2D/MoneyBars/ForagingBar"]
+[node name="MForagingStacks" type="Label" parent="Clickers/MoneyBars/ForagingBar"]
 offset_left = 115.0
 offset_top = 3.0
 offset_right = 256.0
@@ -325,14 +334,6 @@ offset_bottom = 23.0
 text = "Money Per: $0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
-
-[node name="LevelUpForgingTool" type="Button" parent="MeshInstance2D/MoneyBars/ForagingBar"]
-offset_left = 299.0
-offset_top = 19.0
-offset_right = 403.0
-offset_bottom = 55.0
-text = "CLICK ME"
-script = ExtResource("2_ci5qi")
 
 [node name="MoneyLabel" type="Label" parent="."]
 offset_left = 972.0
@@ -343,14 +344,49 @@ label_settings = SubResource("LabelSettings_8yhlx")
 horizontal_alignment = 1
 script = ExtResource("16_l64xj")
 
-[connection signal="pressed" from="MeshInstance2D/SkillBars/ForagingBar/ForagingButton" to="MeshInstance2D/SkillBars/ForagingBar/ForagingProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/FarmingBar/FarmingButton" to="MeshInstance2D/SkillBars/FarmingBar/FarmingProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/FarmingBar/FarmingButton" to="MeshInstance2D/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_button_pressed"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/FishingBar/FishingButton" to="MeshInstance2D/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_button_pressed"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/FishingBar/FishingButton" to="MeshInstance2D/SkillBars/FishingBar/FishingProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/MiningBar/MiningButton" to="MeshInstance2D/SkillBars/MiningBar/MiningProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="MeshInstance2D/SkillBars/MiningBar/MiningButton" to="MeshInstance2D/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_button_pressed"]
-[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MForagingButton" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
-[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MFStacksUp" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
-[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/MFStacksDown" to="MeshInstance2D/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]
-[connection signal="pressed" from="MeshInstance2D/MoneyBars/ForagingBar/LevelUpForgingTool" to="MeshInstance2D/MoneyBars/ForagingBar/LevelUpForgingTool" method="_on_pressed"]
+[node name="UpgradePanel" type="GridContainer" parent="."]
+offset_left = 552.0
+offset_top = 213.0
+offset_right = 694.0
+offset_bottom = 381.0
+
+[node name="Label" type="Label" parent="UpgradePanel"]
+layout_mode = 2
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_otpwe")
+horizontal_alignment = 1
+
+[node name="Foraging" type="Button" parent="UpgradePanel"]
+layout_mode = 2
+text = "Axe | $20"
+script = ExtResource("17_vryef")
+
+[node name="Mining" type="Button" parent="UpgradePanel"]
+layout_mode = 2
+text = "Pickaxe | $20"
+script = ExtResource("18_bl753")
+
+[node name="Farming" type="Button" parent="UpgradePanel"]
+layout_mode = 2
+text = "Hoe | $20"
+script = ExtResource("19_lcnbv")
+
+[node name="Fishing" type="Button" parent="UpgradePanel"]
+layout_mode = 2
+text = "Fishing Rod | $20"
+script = ExtResource("20_f2y76")
+
+[connection signal="pressed" from="Clickers/SkillBars/ForagingBar/ForagingButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="Clickers/SkillBars/FarmingBar/FarmingButton" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="Clickers/SkillBars/FarmingBar/FarmingButton" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_button_pressed"]
+[connection signal="pressed" from="Clickers/SkillBars/FishingBar/FishingButton" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="Clickers/SkillBars/FishingBar/FishingButton" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_button_pressed"]
+[connection signal="pressed" from="Clickers/SkillBars/MiningBar/MiningButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="Clickers/SkillBars/MiningBar/MiningButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_button_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MForagingButton" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksUp" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
+[connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksDown" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]
+[connection signal="pressed" from="UpgradePanel/Foraging" to="UpgradePanel/Foraging" method="_on_pressed"]
+[connection signal="pressed" from="UpgradePanel/Mining" to="UpgradePanel/Mining" method="_on_pressed"]
+[connection signal="pressed" from="UpgradePanel/Farming" to="UpgradePanel/Farming" method="_on_pressed"]
+[connection signal="pressed" from="UpgradePanel/Fishing" to="UpgradePanel/Fishing" method="_on_pressed"]
