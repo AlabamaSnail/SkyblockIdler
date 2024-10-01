@@ -25,7 +25,7 @@ func _on_m_foraging_button_pressed():
 func _process(delta):
 	if is_filling:
 		# Update skill speed dynamically based on current foraging and tool stats
-		var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool)
+		var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool * (1 + (StatHolder.strength * 0.025)))
 
 		# Calculate effective speed based on stacks, which are only changed via the second button
 		var effective_speed = (skill_speed / stacks)
@@ -46,7 +46,7 @@ func _process(delta):
 # Called when the second button is pressed
 func _on_m_foraging_button_2_pressed() -> void:
 	# Recalculate the current skill speed at the moment the button is pressed
-	var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool)
+	var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool * (1 + (StatHolder.strength * 0.025)))
 	
 	# Check if skill speed is greater than 100 and apply stack doubling logic
 	if skill_speed > 100:
@@ -57,10 +57,15 @@ func _on_m_foraging_button_2_pressed() -> void:
 # Called when the mf_stacks_down button is pressed (halves stacks and adds 100 to skill_speed)
 func _on_mf_stacks_down_pressed() -> void:
 	# Recalculate the current skill speed at the moment the button is pressed
-	var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool)
+	var skill_speed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool * (1 + (StatHolder.strength * 0.025)))
 
 	# Ensure stacks don't go below 1, and increase skill_speed if applicable
 	if stacks > 1:
 		stacks /= 2  # Halve the stacks value
 		skill_speed += 100  # Add 100 back to skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
+
+
+func _on_clickall_pressed() -> void:
+	if not is_filling and StatHolder.foraging > 0:
+		is_filling = true  # Start filling the bar when the button is clicked

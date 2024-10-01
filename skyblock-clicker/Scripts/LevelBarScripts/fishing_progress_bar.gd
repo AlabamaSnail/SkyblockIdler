@@ -8,23 +8,17 @@ var skill_speed = 100 * pow(0.8, StatHolder.fishing)
 #L: 1 * (L**2 + 1)
 
 var current_progress = 0.0
-var is_filling = false  # Flag to control when to fill the bar
 
-# Called when the button is pressed
-func _on_fishing_button_pressed():
-	#print(StatHolder.foraging)
-	if not is_filling:
-		is_filling = true  # Start filling the bar when the button is clicked
 
 func _process(delta):
-	if is_filling:
+	if StatHolder.fishingToggle:
 		# Increase the progress based on skill speed
 		current_progress += skill_speed * delta
 
 		# Clamp the progress to a maximum of 100
 		if current_progress > 100:
 			current_progress = 100
-			is_filling = false  # Stop filling when it reaches 100
+			#is_filling = false  # Stop filling when it reaches 100
 			current_progress = 0
 			StatHolder.fishing += 1
 			skill_speed = 100 * pow(0.8, StatHolder.fishing)
@@ -32,3 +26,10 @@ func _process(delta):
 
 		# Set the progress bar value
 		self.value = current_progress
+
+
+func _on_fishing_check_button_3_toggled(toggled_on: bool) -> void:
+	StatHolder.farmingToggle = false
+	StatHolder.miningToggle = false
+	StatHolder.fishingToggle = true
+	StatHolder.foragingToggle = false

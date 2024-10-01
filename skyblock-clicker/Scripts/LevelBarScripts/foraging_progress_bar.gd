@@ -3,7 +3,7 @@ extends ProgressBar
 # The skill speed and current progress
 
 
-var skill_speed = 100 * pow(0.8, StatHolder.foraging)
+var skill_speed = 100 * pow(0.8 , StatHolder.foraging)
 
 #L: 1 * (L**2 + 1)
 
