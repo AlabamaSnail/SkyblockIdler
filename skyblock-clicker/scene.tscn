@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=32 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/buttonpress.gd" id="2_ci5qi"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/mining_level_label.gd" id="6_cgema"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/farming_level_label.gd" id="6_w5ftk"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_progress_bar.gd" id="7_tdak0"]
+[ext_resource type="Script" path="res://check_button.gd" id="7_tl23t"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_level_label.gd" id="8_s4d07"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/health_label.gd" id="11_8mr7h"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/strength_label.gd" id="12_tbkup"]
@@ -17,6 +18,7 @@
 [ext_resource type="Script" path="res://Moneyforaging_progress_bar.gd" id="15_0tea2"]
 [ext_resource type="Script" path="res://Scripts/LabelScripts/money_label.gd" id="16_l64xj"]
 [ext_resource type="Script" path="res://m_mining_progress_bar.gd" id="16_ovdig"]
+[ext_resource type="Script" path="res://mining_check_button.gd" id="16_pnv6m"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTforaging.gd" id="17_vryef"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTmining.gd" id="18_bl753"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfarming.gd" id="19_lcnbv"]
@@ -128,14 +130,6 @@ vertical_alignment = 1
 
 [node name="ForagingBar" type="Node2D" parent="Clickers/SkillBars"]
 
-[node name="ForagingButton" type="Button" parent="Clickers/SkillBars/ForagingBar"]
-offset_left = 11.0
-offset_top = 21.0
-offset_right = 115.0
-offset_bottom = 57.0
-text = "CLICK ME"
-script = ExtResource("2_ci5qi")
-
 [node name="ForagingProgressBar" type="ProgressBar" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 117.0
 offset_top = 25.0
@@ -151,6 +145,14 @@ offset_bottom = 21.0
 text = "Foraging Skill"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Clickers/SkillBars/ForagingBar"]
+offset_left = 28.9982
+offset_top = 20.0022
+offset_right = 72.9982
+offset_bottom = 44.0022
+scale = Vector2(1.5, 1.5)
+script = ExtResource("7_tl23t")
 
 [node name="ForagingLevelLabel" type="Label" parent="Clickers/SkillBars/ForagingBar"]
 offset_left = 133.0
@@ -239,14 +241,6 @@ script = ExtResource("8_s4d07")
 [node name="MiningBar" type="Node2D" parent="Clickers/SkillBars"]
 position = Vector2(0, 59)
 
-[node name="MiningButton" type="Button" parent="Clickers/SkillBars/MiningBar"]
-offset_left = 11.0
-offset_top = 21.0
-offset_right = 115.0
-offset_bottom = 57.0
-text = "CLICK ME"
-script = ExtResource("2_ci5qi")
-
 [node name="MiningProgressBar" type="ProgressBar" parent="Clickers/SkillBars/MiningBar"]
 offset_left = 117.0
 offset_top = 25.0
@@ -271,6 +265,14 @@ text = "Level: 0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("6_cgema")
+
+[node name="MiningCheckButton" type="CheckButton" parent="Clickers/SkillBars/MiningBar"]
+offset_left = 28.9984
+offset_top = 21.0019
+offset_right = 72.9984
+offset_bottom = 45.0019
+scale = Vector2(1.5, 1.5)
+script = ExtResource("16_pnv6m")
 
 [node name="MoneyBars" type="Node2D" parent="Clickers"]
 position = Vector2(-0.194424, 0.499382)
@@ -425,13 +427,12 @@ layout_mode = 2
 text = "Lvl. 0 Fishing Rod | $20"
 script = ExtResource("20_f2y76")
 
-[connection signal="pressed" from="Clickers/SkillBars/ForagingBar/ForagingButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="Clickers/SkillBars/FarmingBar/FarmingButton" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_foraging_Button_Click"]
+[connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="pressed" from="Clickers/SkillBars/FarmingBar/FarmingButton" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_button_pressed"]
-[connection signal="pressed" from="Clickers/SkillBars/FishingBar/FishingButton" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_foraging_Button_Click"]
+[connection signal="pressed" from="Clickers/SkillBars/FarmingBar/FarmingButton" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_foraging_Button_Click"]
 [connection signal="pressed" from="Clickers/SkillBars/FishingBar/FishingButton" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_button_pressed"]
-[connection signal="pressed" from="Clickers/SkillBars/MiningBar/MiningButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_foraging_Button_Click"]
-[connection signal="pressed" from="Clickers/SkillBars/MiningBar/MiningButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_button_pressed"]
+[connection signal="pressed" from="Clickers/SkillBars/FishingBar/FishingButton" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_foraging_Button_Click"]
+[connection signal="toggled" from="Clickers/SkillBars/MiningBar/MiningCheckButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_check_button_toggled"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MForagingButton" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksUp" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksDown" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]

@@ -34,6 +34,14 @@ var miningTool = 1
 var farmingTool = 1
 var fishingTool = 1
 
+
+
+
+# Skill Toggles
+var foragingToggle = false
+var miningToggle = false
+var farmingToggle = false
+var fishingToggle = false
 # Initialize variables if necessary
 func _ready() -> void:
 	pass
