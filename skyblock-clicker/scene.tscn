@@ -488,10 +488,10 @@ label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 
 [node name="CLICKALL" type="Button" parent="Clickers/MoneyBars"]
-offset_left = 10.9998
-offset_top = 240.0
-offset_right = 115.0
-offset_bottom = 276.0
+offset_left = 11.0
+offset_top = 232.0
+offset_right = 291.0
+offset_bottom = 268.0
 text = "CLICK ALL"
 
 [node name="MoneyLabel" type="Label" parent="."]
@@ -504,10 +504,10 @@ horizontal_alignment = 1
 script = ExtResource("16_l64xj")
 
 [node name="UpgradePanel" type="GridContainer" parent="."]
-offset_left = 552.0
-offset_top = 213.0
-offset_right = 694.0
-offset_bottom = 381.0
+offset_left = 480.0
+offset_top = 71.0
+offset_right = 665.0
+offset_bottom = 239.0
 
 [node name="Label" type="Label" parent="UpgradePanel"]
 layout_mode = 2
@@ -535,9 +535,8 @@ script = ExtResource("18_bl753")
 [node name="MBuyMaxButton" type="Button" parent="UpgradePanel/Mining"]
 layout_mode = 0
 offset_left = -116.0
-offset_top = 1.0
 offset_right = -1.0
-offset_bottom = 32.0
+offset_bottom = 31.0
 text = "Buy Max : "
 
 [node name="Farming" type="Button" parent="UpgradePanel"]
@@ -548,9 +547,8 @@ script = ExtResource("19_lcnbv")
 [node name="FFBuyMaxButton" type="Button" parent="UpgradePanel/Farming"]
 layout_mode = 0
 offset_left = -116.0
-offset_top = 1.0
 offset_right = -1.0
-offset_bottom = 32.0
+offset_bottom = 31.0
 text = "Buy Max : "
 
 [node name="Fishing" type="Button" parent="UpgradePanel"]
@@ -561,9 +559,8 @@ script = ExtResource("20_f2y76")
 [node name="FFFBuyMaxButton" type="Button" parent="UpgradePanel/Fishing"]
 layout_mode = 0
 offset_left = -116.0
-offset_top = 1.0
 offset_right = -1.0
-offset_bottom = 32.0
+offset_bottom = 31.0
 text = "Buy Max : "
 
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]

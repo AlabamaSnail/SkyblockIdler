@@ -7,25 +7,25 @@ var skill_speed = 100 * pow(0.8 , StatHolder.foraging)
 
 #L: 1 * (L**2 + 1)
 
-var current_progress = 0.0
-
-
+func _ready() -> void:
+	self.value = StatHolder.foragingProgress
+	skill_speed = 100 * pow(0.8 , StatHolder.foraging)
 func _process(delta):
 	if StatHolder.foragingToggle:
 		# Increase the progress based on skill speed
-		current_progress += skill_speed * delta
+		StatHolder.foragingProgress += skill_speed * delta
 
 		# Clamp the progress to a maximum of 100
-		if current_progress > 100:
-			current_progress = 100
+		if StatHolder.foragingProgress > 100:
+			StatHolder.foragingProgress = 100
 			#is_filling = false  # Stop filling when it reaches 100
-			current_progress = 0
+			StatHolder.foragingProgress = 0
 			StatHolder.foraging += 1
 			skill_speed = 100 * pow(0.8, StatHolder.foraging)
 			#print(skill_speed)
 
 		# Set the progress bar value
-		self.value = current_progress
+		self.value = StatHolder.foragingProgress
 
 
 func _on_check_button_toggled(toggled_on: bool) -> void:

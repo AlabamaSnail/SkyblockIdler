@@ -7,25 +7,26 @@ var skill_speed = 100 * pow(0.8, StatHolder.fishing)
 
 #L: 1 * (L**2 + 1)
 
-var current_progress = 0.0
 
-
+func _ready() -> void:
+	self.value = StatHolder.fishingProgress
+	skill_speed = 100 * pow(0.8, StatHolder.fishing)
 func _process(delta):
 	if StatHolder.fishingToggle:
 		# Increase the progress based on skill speed
-		current_progress += skill_speed * delta
+		StatHolder.fishingProgress += skill_speed * delta
 
 		# Clamp the progress to a maximum of 100
-		if current_progress > 100:
-			current_progress = 100
+		if StatHolder.fishingProgress > 100:
+			StatHolder.fishingProgress = 100
 			#is_filling = false  # Stop filling when it reaches 100
-			current_progress = 0
+			StatHolder.fishingProgress = 0
 			StatHolder.fishing += 1
 			skill_speed = 100 * pow(0.8, StatHolder.fishing)
 			#print(skill_speed)
 
 		# Set the progress bar value
-		self.value = current_progress
+		self.value = StatHolder.fishingProgress
 
 
 func _on_fishing_check_button_3_toggled(toggled_on: bool) -> void:
