@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=46 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -26,9 +26,20 @@
 [ext_resource type="Script" path="res://m_farming_progress_bar.gd" id="20_c01db"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfishing.gd" id="20_f2y76"]
 [ext_resource type="Script" path="res://m_fishing_progress_bar.gd" id="21_iqkso"]
+[ext_resource type="Script" path="res://tab_bar.gd" id="23_potsj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
+
+[sub_resource type="QuadMesh" id="QuadMesh_u2tjg"]
+
+[sub_resource type="Gradient" id="Gradient_6abk7"]
+colors = PackedColorArray(0.886724, 0.75307, 0.554743, 1, 0.366326, 0.432458, 0.423973, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ej64g"]
+gradient = SubResource("Gradient_6abk7")
+fill_from = Vector2(0.454128, 0)
+fill_to = Vector2(0.463303, 0.981651)
 
 [sub_resource type="QuadMesh" id="QuadMesh_3d2pg"]
 
@@ -50,6 +61,14 @@ font_size = 36
 font_color = Color(0, 0.513726, 0.177986, 1)
 outline_size = 4
 
+[sub_resource type="QuadMesh" id="QuadMesh_bdxdn"]
+
+[sub_resource type="Gradient" id="Gradient_7cygd"]
+colors = PackedColorArray(0.444029, 0.441515, 0.52377, 1, 0.418591, 0.789532, 0.64346, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hsw25"]
+gradient = SubResource("Gradient_7cygd")
+
 [sub_resource type="LabelSettings" id="LabelSettings_8yhlx"]
 font_size = 50
 font_color = Color(0.705418, 0.699021, 1.15514e-06, 1)
@@ -61,6 +80,22 @@ font_size = 20
 outline_size = 2
 outline_color = Color(0.694118, 0, 0.972549, 1)
 
+[sub_resource type="Gradient" id="Gradient_pal87"]
+colors = PackedColorArray(0.313213, 0.522068, 1, 1, 0.252028, 0.252028, 0.252028, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1dqpx"]
+gradient = SubResource("Gradient_pal87")
+fill_from = Vector2(0.366972, 0)
+fill_to = Vector2(0.426605, 0.981651)
+
+[sub_resource type="Gradient" id="Gradient_yi08a"]
+colors = PackedColorArray(0, 0.701049, 0, 1, 0.424125, 0.578395, 0.395043, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nkh2n"]
+gradient = SubResource("Gradient_yi08a")
+fill_from = Vector2(0.642202, 0.137615)
+fill_to = Vector2(0.766055, 0.908257)
+
 [node name="Scene" type="Node2D"]
 
 [node name="CharacterStatHolder" type="Node2D" parent="."]
@@ -69,29 +104,29 @@ script = ExtResource("3_yepde")
 [node name="StatLabels" type="Node2D" parent="."]
 
 [node name="HealthLabel" type="Label" parent="StatLabels"]
-offset_left = 1817.0
+offset_left = 1815.0
 offset_right = 1920.0
-offset_bottom = 20.0
+offset_bottom = 21.0
 text = "Health: 0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("11_8mr7h")
 
 [node name="StrengthLabel" type="Label" parent="StatLabels"]
-offset_left = 1817.0
-offset_top = 16.0
+offset_left = 1815.0
+offset_top = 19.0
 offset_right = 1920.0
-offset_bottom = 36.0
+offset_bottom = 39.0
 text = "Strength: 0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 script = ExtResource("12_tbkup")
 
 [node name="DefenseLabel" type="Label" parent="StatLabels"]
-offset_left = 1817.0
-offset_top = 33.0
+offset_left = 1815.0
+offset_top = 38.0
 offset_right = 1920.0
-offset_bottom = 53.0
+offset_bottom = 58.0
 text = "Defense: 0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
@@ -99,15 +134,22 @@ script = ExtResource("13_wp24o")
 
 [node name="IntelligenceLabel" type="Label" parent="StatLabels"]
 layout_direction = 1
-offset_left = 1817.0
-offset_top = 48.0
+offset_left = 1815.0
+offset_top = 55.0
 offset_right = 1920.0
-offset_bottom = 68.0
+offset_bottom = 75.0
 text = "Intelligence: 0"
 label_settings = SubResource("LabelSettings_lh5sc")
 horizontal_alignment = 1
 autowrap_mode = 2
 script = ExtResource("14_4hf3v")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StatLabels"]
+z_index = -1
+position = Vector2(1867.56, 540.659)
+scale = Vector2(-105.663, 1083.2)
+mesh = SubResource("QuadMesh_u2tjg")
+texture = SubResource("GradientTexture2D_ej64g")
 
 [node name="Clickers" type="MeshInstance2D" parent="."]
 position = Vector2(147.119, 540.044)
@@ -494,74 +536,145 @@ offset_right = 291.0
 offset_bottom = 268.0
 text = "CLICK ALL"
 
-[node name="MoneyLabel" type="Label" parent="."]
-offset_left = 972.0
-offset_right = 1191.0
-offset_bottom = 69.0
+[node name="MoneyLabel2" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="MoneyLabel2"]
+position = Vector2(1054.38, 40)
+scale = Vector2(1520.75, 81.5)
+mesh = SubResource("QuadMesh_bdxdn")
+texture = SubResource("GradientTexture1D_hsw25")
+
+[node name="MoneyLabel" type="Label" parent="MoneyLabel2"]
+offset_left = 294.0
+offset_right = 1815.0
+offset_bottom = 81.0
 text = "Money: 0"
 label_settings = SubResource("LabelSettings_8yhlx")
 horizontal_alignment = 1
 script = ExtResource("16_l64xj")
 
-[node name="UpgradePanel" type="GridContainer" parent="."]
-offset_left = 480.0
-offset_top = 71.0
-offset_right = 665.0
-offset_bottom = 239.0
+[node name="UpgradeMenu" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="UpgradePanel"]
+[node name="TabBar" type="TabBar" parent="UpgradeMenu"]
+offset_left = 295.0
+offset_top = 81.0
+offset_right = 691.0
+offset_bottom = 121.0
+current_tab = 0
+drag_to_rearrange_enabled = true
+tab_count = 3
+tab_0/title = "Tool Upgrades"
+tab_0/tooltip = "Upgrades to increase money speed"
+tab_1/title = "Skill Upgrades"
+tab_1/tooltip = "Upgraes to increase how fast you level up skills"
+tab_2/title = "Misc Upgrades"
+script = ExtResource("23_potsj")
+
+[node name="ToolUpgradeTab" type="Panel" parent="UpgradeMenu/TabBar"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 396.0
+offset_bottom = 518.0
+
+[node name="ToolUpgradePanel" type="GridContainer" parent="UpgradeMenu/TabBar/ToolUpgradeTab"]
+offset_left = 153.0
+offset_top = 45.0
+offset_right = 338.0
+offset_bottom = 213.0
+
+[node name="Label" type="Label" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Upgrades"
 label_settings = SubResource("LabelSettings_otpwe")
 horizontal_alignment = 1
 
-[node name="Foraging" type="Button" parent="UpgradePanel"]
+[node name="Foraging" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Lvl. 0 Axe | $20"
 script = ExtResource("17_vryef")
 
-[node name="FBuyMaxButton" type="Button" parent="UpgradePanel/Foraging"]
+[node name="FBuyMaxButton" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging"]
 layout_mode = 0
 offset_left = -116.0
 offset_right = -1.0
 offset_bottom = 31.0
 text = "Buy Max : "
 
-[node name="Mining" type="Button" parent="UpgradePanel"]
+[node name="Mining" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Lvl. 0 Pickaxe | $20"
 script = ExtResource("18_bl753")
 
-[node name="MBuyMaxButton" type="Button" parent="UpgradePanel/Mining"]
+[node name="MBuyMaxButton" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining"]
 layout_mode = 0
 offset_left = -116.0
 offset_right = -1.0
 offset_bottom = 31.0
 text = "Buy Max : "
 
-[node name="Farming" type="Button" parent="UpgradePanel"]
+[node name="Farming" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Lvl. 0 Hoe | $20"
 script = ExtResource("19_lcnbv")
 
-[node name="FFBuyMaxButton" type="Button" parent="UpgradePanel/Farming"]
+[node name="FFBuyMaxButton" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming"]
 layout_mode = 0
 offset_left = -116.0
 offset_right = -1.0
 offset_bottom = 31.0
 text = "Buy Max : "
 
-[node name="Fishing" type="Button" parent="UpgradePanel"]
+[node name="Fishing" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Lvl. 0 Fishing Rod | $20"
 script = ExtResource("20_f2y76")
 
-[node name="FFFBuyMaxButton" type="Button" parent="UpgradePanel/Fishing"]
+[node name="FFFBuyMaxButton" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing"]
 layout_mode = 0
 offset_left = -116.0
 offset_right = -1.0
 offset_bottom = 31.0
 text = "Buy Max : "
+
+[node name="MiscUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
+visible = false
+layout_mode = 0
+offset_top = 40.0
+offset_right = 396.0
+offset_bottom = 518.0
+
+[node name="GraphEdit" type="GraphEdit" parent="UpgradeMenu/TabBar/MiscUpgrades"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 395.0
+offset_bottom = 477.0
+scroll_offset = Vector2(-40, -191)
+
+[node name="SkillUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
+visible = false
+layout_mode = 0
+offset_top = 40.0
+offset_right = 396.0
+offset_bottom = 518.0
+
+[node name="TextEdit" type="TextEdit" parent="UpgradeMenu/TabBar/SkillUpgrades"]
+layout_mode = 0
+offset_right = 396.0
+offset_bottom = 477.0
+text = "Testing ig
+"
+
+[node name="CombatBackground" type="MeshInstance2D" parent="."]
+position = Vector2(1253, 580.5)
+scale = Vector2(1124, 999)
+mesh = SubResource("QuadMesh_bdxdn")
+texture = SubResource("GradientTexture2D_1dqpx")
+
+[node name="RebirthBackground" type="MeshInstance2D" parent="."]
+position = Vector2(493, 838.5)
+scale = Vector2(396, 483)
+mesh = SubResource("QuadMesh_bdxdn")
+texture = SubResource("GradientTexture2D_nkh2n")
 
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
@@ -583,11 +696,12 @@ text = "Buy Max : "
 [connection signal="pressed" from="Clickers/MoneyBars/CLICKALL" to="Clickers/MoneyBars/MiningBar/MMiningProgressBar" method="_on_clickall_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/CLICKALL" to="Clickers/MoneyBars/FarmingBar/MFarmingProgressBar" method="_on_clickall_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/CLICKALL" to="Clickers/MoneyBars/FishingBar/MFishingProgressBar" method="_on_clickall_pressed"]
-[connection signal="pressed" from="UpgradePanel/Foraging" to="UpgradePanel/Foraging" method="_on_pressed"]
-[connection signal="pressed" from="UpgradePanel/Foraging/FBuyMaxButton" to="UpgradePanel/Foraging" method="_on_buymaxbutton_pressed"]
-[connection signal="pressed" from="UpgradePanel/Mining" to="UpgradePanel/Mining" method="_on_pressed"]
-[connection signal="pressed" from="UpgradePanel/Mining/MBuyMaxButton" to="UpgradePanel/Mining" method="_on_m_buy_max_button_pressed"]
-[connection signal="pressed" from="UpgradePanel/Farming" to="UpgradePanel/Farming" method="_on_pressed"]
-[connection signal="pressed" from="UpgradePanel/Farming/FFBuyMaxButton" to="UpgradePanel/Farming" method="_on_ff_buy_max_button_pressed"]
-[connection signal="pressed" from="UpgradePanel/Fishing" to="UpgradePanel/Fishing" method="_on_pressed"]
-[connection signal="pressed" from="UpgradePanel/Fishing/FFFBuyMaxButton" to="UpgradePanel/Fishing" method="_on_fff_buy_max_button_pressed"]
+[connection signal="tab_selected" from="UpgradeMenu/TabBar" to="UpgradeMenu/TabBar" method="_on_tab_selected"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging/FBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" method="_on_buymaxbutton_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining/MBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining" method="_on_m_buy_max_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming/FFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming" method="_on_ff_buy_max_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing/FFFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_fff_buy_max_button_pressed"]
