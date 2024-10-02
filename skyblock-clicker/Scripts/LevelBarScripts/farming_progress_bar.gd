@@ -3,18 +3,18 @@ extends ProgressBar
 # The skill speed and current progress
 
 
-var skill_speed = 100 * pow(0.8, StatHolder.farming)
+var skill_speed = (100 * pow(0.8, StatHolder.farming)) * StatHolder.rebirthPoints
 
 #L: 1 * (L**2 + 1)
 
 
 func _ready() -> void:
 	self.value = StatHolder.farmingProgress
-	skill_speed = 100 * pow(0.8, StatHolder.farming)
+	skill_speed = (100 * pow(0.8, StatHolder.farming)) * StatHolder.rebirthPoints
 func _process(delta):
 	if StatHolder.farmingToggle:
 		# Increase the progress based on skill speed
-		skill_speed = 100 * pow(0.8, StatHolder.farming)
+		skill_speed = (100 * pow(0.8, StatHolder.farming)) * StatHolder.rebirthPoints
 		self.value = StatHolder.farmingProgress
 		StatHolder.farmingProgress += skill_speed * delta
 
@@ -24,7 +24,7 @@ func _process(delta):
 			#is_filling = false  # Stop filling when it reaches 100
 			StatHolder.farmingProgress = 0
 			StatHolder.farming += 1
-			skill_speed = 100 * pow(0.8, StatHolder.farming)
+			skill_speed = (100 * pow(0.8, StatHolder.farming)) * StatHolder.rebirthPoints
 			#print(skill_speed)
 
 		# Set the progress bar value

@@ -1,7 +1,7 @@
 extends Button
 
 # Reference to the StatHolder for accessing skill levels and money
-
+var test = 0
 func _ready() -> void:
 	# Initialize button text with current rebirth points
 	update_rebirth_button_text()
@@ -26,6 +26,7 @@ func _on_pressed() -> void:
 		# Calculate rebirth points
 
 		# Reset all skills, progress, and upgrades
+		StatHolder.rebirthPoints += calculate_rebirth_points()
 		StatHolder.foraging = 0
 		StatHolder.mining = 0
 		StatHolder.farming = 0
@@ -48,7 +49,6 @@ func _on_pressed() -> void:
 		StatHolder.MoneyminingStacks = 1
 		# Reset upgrades and money
 		StatHolder.money = 0
-		StatHolder.rebirthPoints += 1
 
 		# Update the button text to show new rebirth points
 		update_rebirth_button_text()

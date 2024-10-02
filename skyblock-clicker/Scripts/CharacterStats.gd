@@ -21,7 +21,7 @@ var taming = 0
 var social = 0
 
 # Misc
-var money = 0
+var money = 1500
 var rebirthPoints = 0
 var strength = 0
 var intelligence = 0

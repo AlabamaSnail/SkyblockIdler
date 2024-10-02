@@ -1,6 +1,9 @@
 extends CheckButton
+var toggled_on = false
+func _on_toggled(toggled_on1: bool) -> void:
+	toggled_on = toggled_on1
 
-func _on_toggled(toggled_on: bool) -> void:
+func _process(delta: float) -> void:
 	if toggled_on:
 		# Get the levels of each skill
 		var foraging_level = StatHolder.foraging
@@ -32,9 +35,9 @@ func _on_toggled(toggled_on: bool) -> void:
 			StatHolder.farmingToggle = false
 			StatHolder.fishingToggle = false
 			StatHolder.miningToggle = true
-	else:
-		# If toggled off, stop all skill leveling
-		StatHolder.foragingToggle = false
-		StatHolder.farmingToggle = false
-		StatHolder.fishingToggle = false
-		StatHolder.miningToggle = false
+		else:
+			# If toggled off, stop all skill leveling
+			StatHolder.foragingToggle = false
+			StatHolder.farmingToggle = false
+			StatHolder.fishingToggle = false
+			StatHolder.miningToggle = false
