@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=55 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -30,6 +30,8 @@
 [ext_resource type="Script" path="res://tab_bar.gd" id="23_potsj"]
 [ext_resource type="Script" path="res://Rebirthbutton.gd" id="28_8k2ct"]
 [ext_resource type="Script" path="res://label.gd" id="29_3rxki"]
+[ext_resource type="Theme" uid="uid://cbg535xpvqdk5" path="res://RebirthButtonTheme.tres" id="29_ryaxf"]
+[ext_resource type="Script" path="res://foraging_rebirth_upgrade.gd" id="30_n8esh"]
 [ext_resource type="Script" path="res://rebirth_points_label.gd" id="30_xu33u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
@@ -673,15 +675,17 @@ text = "Buy Max : "
 visible = false
 layout_mode = 0
 offset_top = 40.0
-offset_right = 396.0
+offset_right = 418.0
 offset_bottom = 518.0
 
-[node name="GraphEdit" type="GraphEdit" parent="UpgradeMenu/TabBar/RebirthUpgrades"]
-layout_mode = 0
-offset_top = 1.0
-offset_right = 395.0
-offset_bottom = 477.0
-scroll_offset = Vector2(-40, -191)
+[node name="ForagingRebirthUpgrade" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades"]
+offset_left = 16.0
+offset_top = 83.0
+offset_right = 181.0
+offset_bottom = 114.0
+theme = ExtResource("29_ryaxf")
+text = "Foraging Skill x2 : 1P"
+script = ExtResource("30_n8esh")
 
 [node name="SkillUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
 visible = false
@@ -782,4 +786,5 @@ script = ExtResource("30_xu33u")
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming/FFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming" method="_on_ff_buy_max_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing/FFFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_fff_buy_max_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/ForagingRebirthUpgrade" to="UpgradeMenu/TabBar/RebirthUpgrades/ForagingRebirthUpgrade" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/Button" to="Rebirth/Button" method="_on_pressed"]

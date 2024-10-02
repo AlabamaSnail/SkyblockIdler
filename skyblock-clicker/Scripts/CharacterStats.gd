@@ -1,10 +1,10 @@
 extends Node2D
 
 # Clicking Skills
-var foraging = 0
-var mining = 0
-var farming = 0
-var fishing = 0
+var foraging = 25
+var mining = 25
+var farming = 25
+var fishing = 25
 
 # Fighting Game Skills
 var combat = 0
@@ -63,6 +63,11 @@ var MoneyminingStacks = 1
 var MoneyfarmingStacks = 1
 var MoneyfishingStacks = 1
 
+# Rebirth Upgrades
+var foragingRebirthUpgrade = 0
+var farmingRebirthUpgrade = 0
+var fishingRebirthUpgrade = 0
+var miningRebirthUpgrade = 0
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -107,6 +112,10 @@ func save_data() -> void:
 			"farmingProgress": farmingProgress,
 			"fishingProgress": fishingProgress,
 			"rebirthPoints": rebirthPoints,
+			"foragingRebirthUpgrade": foragingRebirthUpgrade,
+			"farmingRebirthUpgrade": farmingRebirthUpgrade,
+			"fishingRebirthUpgrade": fishingRebirthUpgrade,
+			"miningRebirthUpgrade": miningRebirthUpgrade,
 		}
 		file.store_string(json.stringify(data))  # Convert dictionary to JSON string
 		file.close()
@@ -150,6 +159,10 @@ func load_data() -> void:
 			fishingProgress = json_data.get("fishingProgress", 0)
 			farmingProgress = json_data.get("farmingProgress", 0)
 			rebirthPoints = json_data.get("rebirthPoints", 0)
+			foragingRebirthUpgrade = json_data.get("foragingRebirthUpgrade")
+			farmingRebirthUpgrade = json_data.get("farmingRebirthUpgrade")
+			fishingRebirthUpgrade = json_data.get("fishingRebirthUpgrade")
+			miningRebirthUpgrade = json_data.get("miningRebirthUpgrade")
 		else:
 			print("Error parsing JSON: ", parse_result)  # Print any parsing errors
 		file.close()
