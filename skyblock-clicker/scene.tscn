@@ -720,6 +720,7 @@ text = "Rebirth"
 script = ExtResource("28_8k2ct")
 
 [node name="PointsGainedLabel" type="Label" parent="Rebirth/Button"]
+layout_mode = 0
 offset_left = -135.0
 offset_top = -35.0
 offset_right = 282.0
