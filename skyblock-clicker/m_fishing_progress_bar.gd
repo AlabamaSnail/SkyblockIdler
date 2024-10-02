@@ -1,9 +1,6 @@
 extends ProgressBar
 
 # The skill speed and current progress
-var current_progress = 0.0
-var stacks = 1
-var is_filling = false  # Flag to control when to fill the bar
 var label_stacks  # Reference to the "MForagingStacks" label
 
 # Called when the node is added to the scene
@@ -15,42 +12,42 @@ func _ready():
 
 # Update the MForagingStacks label text to display current stacks
 func _update_stacks_label():
-	label_stacks.text = "Money Per: $%s" % str(stacks)
+	label_stacks.text = "Money Per: $%s" % str(StatHolder.MoneyfishingStacks)
 
 # Called when the first button is pressed
 func _on_m_fishing_button_pressed():
-	if not is_filling and StatHolder.fishing > 0:
-		is_filling = true  # Start filling the bar when the button is clicked
+	if not StatHolder.MoneyfishingToggle and StatHolder.fishing > 0:
+		StatHolder.MoneyfishingToggle = true  # Start filling the bar when the button is clicked
 
 func _process(delta):
-	if is_filling:
+	_update_stacks_label()
+	if StatHolder.MoneyfishingToggle:
 		# Update skill speed dynamically based on current foraging and tool stats
 		var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
 
 		# Calculate effective speed based on stacks, which are only changed via the second button
-		var effective_speed = (skill_speed / stacks)
 		
 		# Increase the progress based on effective speed
-		current_progress += effective_speed * delta
+		StatHolder.MoneyfishingProgress += (skill_speed / StatHolder.MoneyfishingStacks) * delta
 
 		# Clamp the progress to a maximum of 100
-		if current_progress > 100:
-			current_progress = 100
-			is_filling = false  # Stop filling when it reaches 100
-			current_progress = 0
-			StatHolder.money += stacks  # Add to money based on stacks
+		if StatHolder.MoneyfishingProgress > 100:
+			StatHolder.MoneyfishingProgress = 100
+			StatHolder.MoneyfishingToggle = false  # Stop filling when it reaches 100
+			StatHolder.MoneyfishingProgress = 0
+			StatHolder.money += StatHolder.MoneyfishingStacks  # Add to money based on stacks
 
 		# Set the progress bar value
-		self.value = current_progress
+		self.value = StatHolder.MoneyfishingProgress
 
 # Called when the second button is pressed
 func _on_m_fish_stacks_up_pressed() -> void:
-	# Recalculate the current skill speed at the moment the button is pressed
-	var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
-	
-	# Check if skill speed is greater than 100 and apply stack doubling logic
-	if skill_speed > 100:
-		stacks *= 2  # Double the stacks value
+	if not StatHolder.MoneyfishingToggle:
+		# Recalculate the current skill speed at the moment the button is pressed
+		var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
+		
+		# Check if skill speed is greater than 100 and apply stack doubling logic
+		StatHolder.MoneyfishingStacks *= 2  # Double the stacks value
 		skill_speed -= 100  # Permanently subtract 100 from skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 
@@ -60,12 +57,12 @@ func _on_m_fish_stacks_down_pressed() -> void:
 	var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
 
 	# Ensure stacks don't go below 1, and increase skill_speed if applicable
-	if stacks > 1:
-		stacks /= 2  # Halve the stacks value
+	if StatHolder.MoneyfishingStacks > 1:
+		StatHolder.MoneyfishingStacks /= 2  # Halve the stacks value
 		skill_speed += 100  # Add 100 back to skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 
 
 func _on_clickall_pressed() -> void:
-	if not is_filling and StatHolder.fishing > 0:
-		is_filling = true  # Start filling the bar when the button is clicked
+	if not StatHolder.MoneyfishingToggle and StatHolder.fishing > 0:
+		StatHolder.MoneyfishingToggle = true  # Start filling the bar when the button is clicked

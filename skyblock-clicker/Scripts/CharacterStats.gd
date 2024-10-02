@@ -22,6 +22,7 @@ var social = 0
 
 # Misc
 var money = 0
+var rebirthPoints = 0
 var strength = 0
 var intelligence = 0
 var defense = 0
@@ -45,6 +46,23 @@ var foragingProgress = 0
 var miningProgress = 0
 var farmingProgress = 0
 var fishingProgress = 0
+
+# Money Bar Progresses
+var MoneyforagingProgress = 0
+var MoneyminingProgress = 0
+var MoneyfarmingProgress = 0
+var MoneyfishingProgress = 0
+
+var MoneyforagingToggle = false
+var MoneyminingToggle = false
+var MoneyfarmingToggle = false
+var MoneyfishingToggle = false
+
+var MoneyforagingStacks = 1
+var MoneyminingStacks = 1
+var MoneyfarmingStacks = 1
+var MoneyfishingStacks = 1
+
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -88,6 +106,7 @@ func save_data() -> void:
 			"miningProgress": miningProgress,
 			"farmingProgress": farmingProgress,
 			"fishingProgress": fishingProgress,
+			"rebirthPoints": rebirthPoints,
 		}
 		file.store_string(json.stringify(data))  # Convert dictionary to JSON string
 		file.close()
@@ -130,6 +149,7 @@ func load_data() -> void:
 			miningProgress = json_data.get("miningProgress", 0)
 			fishingProgress = json_data.get("fishingProgress", 0)
 			farmingProgress = json_data.get("farmingProgress", 0)
+			rebirthPoints = json_data.get("rebirthPoints", 0)
 		else:
 			print("Error parsing JSON: ", parse_result)  # Print any parsing errors
 		file.close()

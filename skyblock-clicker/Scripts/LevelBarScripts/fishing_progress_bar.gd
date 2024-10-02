@@ -14,6 +14,8 @@ func _ready() -> void:
 func _process(delta):
 	if StatHolder.fishingToggle:
 		# Increase the progress based on skill speed
+		skill_speed = 100 * pow(0.8, StatHolder.fishing)
+		self.value = StatHolder.fishingProgress
 		StatHolder.fishingProgress += skill_speed * delta
 
 		# Clamp the progress to a maximum of 100

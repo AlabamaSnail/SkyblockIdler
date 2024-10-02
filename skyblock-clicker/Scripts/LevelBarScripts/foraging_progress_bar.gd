@@ -13,6 +13,8 @@ func _ready() -> void:
 func _process(delta):
 	if StatHolder.foragingToggle:
 		# Increase the progress based on skill speed
+		skill_speed = 100 * pow(0.8 , StatHolder.foraging)
+		self.value = StatHolder.foragingProgress
 		StatHolder.foragingProgress += skill_speed * delta
 
 		# Clamp the progress to a maximum of 100

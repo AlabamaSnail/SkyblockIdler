@@ -7,6 +7,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$FBuyMaxButton.text = "Buy Max : " + str(calculate_max_upgrades())
+	self.text = "Lvl. " + str(StatHolder.foragingTool) + " Axe | $" + str(StatHolder.foragingTool ** 3 + 20)
 
 func _on_pressed() -> void:
 	if StatHolder.money >= (StatHolder.foragingTool ** 3 + 20):

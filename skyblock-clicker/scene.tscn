@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=53 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -21,12 +21,16 @@
 [ext_resource type="Script" path="res://m_mining_progress_bar.gd" id="16_ovdig"]
 [ext_resource type="Script" path="res://mining_check_button.gd" id="16_pnv6m"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTforaging.gd" id="17_vryef"]
+[ext_resource type="Script" path="res://auto_leveler.gd" id="18_6g32d"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTmining.gd" id="18_bl753"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfarming.gd" id="19_lcnbv"]
 [ext_resource type="Script" path="res://m_farming_progress_bar.gd" id="20_c01db"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfishing.gd" id="20_f2y76"]
 [ext_resource type="Script" path="res://m_fishing_progress_bar.gd" id="21_iqkso"]
 [ext_resource type="Script" path="res://tab_bar.gd" id="23_potsj"]
+[ext_resource type="Script" path="res://Rebirthbutton.gd" id="28_8k2ct"]
+[ext_resource type="Script" path="res://label.gd" id="29_3rxki"]
+[ext_resource type="Script" path="res://rebirth_points_label.gd" id="30_xu33u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -95,6 +99,25 @@ colors = PackedColorArray(0, 0.701049, 0, 1, 0.424125, 0.578395, 0.395043, 1)
 gradient = SubResource("Gradient_yi08a")
 fill_from = Vector2(0.642202, 0.137615)
 fill_to = Vector2(0.766055, 0.908257)
+
+[sub_resource type="LabelSettings" id="LabelSettings_carkc"]
+line_spacing = 0.0
+font_size = 24
+font_color = Color(0.940389, 0.933434, 0.921221, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8tud"]
+line_spacing = 0.0
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6axcv"]
+line_spacing = 0.0
+font_size = 24
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Scene" type="Node2D"]
 
@@ -318,6 +341,15 @@ offset_right = 72.9984
 offset_bottom = 45.0019
 scale = Vector2(1.5, 1.5)
 script = ExtResource("16_pnv6m")
+
+[node name="AutoLeveler" type="CheckButton" parent="Clickers/SkillBars"]
+offset_left = 191.998
+offset_top = -27.9961
+offset_right = 321.998
+offset_bottom = 3.00391
+scale = Vector2(0.75, 0.75)
+text = "Auto Level"
+script = ExtResource("18_6g32d")
 
 [node name="MoneyBars" type="Node2D" parent="Clickers"]
 position = Vector2(-0.194424, 0.499382)
@@ -558,7 +590,7 @@ script = ExtResource("16_l64xj")
 [node name="TabBar" type="TabBar" parent="UpgradeMenu"]
 offset_left = 295.0
 offset_top = 81.0
-offset_right = 691.0
+offset_right = 713.0
 offset_bottom = 121.0
 current_tab = 0
 drag_to_rearrange_enabled = true
@@ -567,16 +599,17 @@ tab_0/title = "Tool Upgrades"
 tab_0/tooltip = "Upgrades to increase money speed"
 tab_1/title = "Skill Upgrades"
 tab_1/tooltip = "Upgraes to increase how fast you level up skills"
-tab_2/title = "Misc Upgrades"
+tab_2/title = "Rebirth Upgrades"
 script = ExtResource("23_potsj")
 
 [node name="ToolUpgradeTab" type="Panel" parent="UpgradeMenu/TabBar"]
 layout_mode = 0
 offset_top = 40.0
-offset_right = 396.0
+offset_right = 417.0
 offset_bottom = 518.0
 
 [node name="ToolUpgradePanel" type="GridContainer" parent="UpgradeMenu/TabBar/ToolUpgradeTab"]
+layout_mode = 0
 offset_left = 153.0
 offset_top = 45.0
 offset_right = 338.0
@@ -636,14 +669,14 @@ offset_right = -1.0
 offset_bottom = 31.0
 text = "Buy Max : "
 
-[node name="MiscUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
+[node name="RebirthUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
 visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 396.0
 offset_bottom = 518.0
 
-[node name="GraphEdit" type="GraphEdit" parent="UpgradeMenu/TabBar/MiscUpgrades"]
+[node name="GraphEdit" type="GraphEdit" parent="UpgradeMenu/TabBar/RebirthUpgrades"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 395.0
@@ -665,21 +698,64 @@ text = "Testing ig
 "
 
 [node name="CombatBackground" type="MeshInstance2D" parent="."]
-position = Vector2(1253, 580.5)
-scale = Vector2(1124, 999)
+position = Vector2(1264, 580.5)
+scale = Vector2(1102, 999)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_1dqpx")
 
-[node name="RebirthBackground" type="MeshInstance2D" parent="."]
-position = Vector2(493, 838.5)
-scale = Vector2(396, 483)
+[node name="Rebirth" type="Node2D" parent="."]
+
+[node name="RebirthBackground" type="MeshInstance2D" parent="Rebirth"]
+position = Vector2(504, 838.5)
+scale = Vector2(418, 483)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_nkh2n")
+
+[node name="Button" type="Button" parent="Rebirth"]
+offset_left = 431.0
+offset_top = 1010.0
+offset_right = 580.0
+offset_bottom = 1059.0
+text = "Rebirth"
+script = ExtResource("28_8k2ct")
+
+[node name="PointsGainedLabel" type="Label" parent="Rebirth/Button"]
+offset_left = -135.0
+offset_top = -35.0
+offset_right = 282.0
+offset_bottom = -1.0
+text = "Points Gained: 0"
+label_settings = SubResource("LabelSettings_carkc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RebirthLabel" type="Label" parent="Rebirth"]
+offset_left = 295.0
+offset_top = 597.0
+offset_right = 712.0
+offset_bottom = 664.0
+text = "Rebirth"
+label_settings = SubResource("LabelSettings_o8tud")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_3rxki")
+
+[node name="RebirthPointsLabel" type="Label" parent="Rebirth"]
+offset_left = 295.0
+offset_top = 657.0
+offset_right = 712.0
+offset_bottom = 724.0
+text = "Rebirth Points: 0"
+label_settings = SubResource("LabelSettings_6axcv")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("30_xu33u")
 
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FishingBar/FishingCheckButton3" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_check_button_3_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/MiningBar/MiningCheckButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_check_button_toggled"]
+[connection signal="toggled" from="Clickers/SkillBars/AutoLeveler" to="Clickers/SkillBars/AutoLeveler" method="_on_toggled"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MForagingButton" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksUp" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksDown" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]
@@ -705,3 +781,4 @@ texture = SubResource("GradientTexture2D_nkh2n")
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming/FFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Farming" method="_on_ff_buy_max_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing/FFFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_fff_buy_max_button_pressed"]
+[connection signal="pressed" from="Rebirth/Button" to="Rebirth/Button" method="_on_pressed"]

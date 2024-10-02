@@ -15,12 +15,12 @@ func _on_tab_selected(tab: int) -> void:
 	if tab == 0:
 		$ToolUpgradeTab.visible = true
 		$SkillUpgrades.visible = false
-		$MiscUpgrades.visible = false
+		$RebirthUpgrades.visible = false
 	if tab == 1:
 		$ToolUpgradeTab.visible = false
 		$SkillUpgrades.visible = true
-		$MiscUpgrades.visible = false
+		$RebirthUpgrades.visible = false
 	if tab == 2:
 		$ToolUpgradeTab.visible = false
 		$SkillUpgrades.visible = false
-		$MiscUpgrades.visible = true
+		$RebirthUpgrades.visible = true
