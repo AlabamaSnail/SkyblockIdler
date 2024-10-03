@@ -638,7 +638,6 @@ tab_2/title = "Rebirth Upgrades"
 script = ExtResource("23_potsj")
 
 [node name="ToolUpgradeTab" type="Panel" parent="UpgradeMenu/TabBar"]
-visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 417.0
@@ -744,6 +743,7 @@ text = "Lvl. 0  Fishing Skill x2 : 1P"
 script = ExtResource("32_aot1f")
 
 [node name="SkillUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
+visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 418.0
