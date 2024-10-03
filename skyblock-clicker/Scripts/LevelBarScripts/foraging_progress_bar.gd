@@ -3,17 +3,17 @@ extends ProgressBar
 # The skill speed and current progress
 
 
-var skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))
+var skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 
 #L: 1 * (L**2 + 1)
 
 func _ready() -> void:
 	self.value = StatHolder.foragingProgress
-	skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))
+	skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 func _process(delta):
 	if StatHolder.foragingToggle:
 		# Increase the progress based on skill speed
-		skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))
+		skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 		self.value = StatHolder.foragingProgress
 		StatHolder.foragingProgress += skill_speed * delta
 
@@ -23,7 +23,7 @@ func _process(delta):
 			#is_filling = false  # Stop filling when it reaches 100
 			StatHolder.foragingProgress = 0
 			StatHolder.foraging += 1
-			skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))
+			skill_speed = (100 * pow(0.8, StatHolder.foraging)) * pow(2.0, (StatHolder.foragingRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 			#print(skill_speed)
 
 		# Set the progress bar value

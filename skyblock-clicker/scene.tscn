@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=72 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -41,6 +41,12 @@
 [ext_resource type="Script" path="res://fishing_skill_upgrade_6.gd" id="36_q5krr"]
 [ext_resource type="Script" path="res://mining_skill_upgrade_7.gd" id="37_d1wtw"]
 [ext_resource type="Script" path="res://rebirth_tab_bar.gd" id="39_rj1ww"]
+[ext_resource type="Script" path="res://2x_money.gd" id="42_mafdu"]
+[ext_resource type="Script" path="res://2x_skills.gd" id="43_gmrdx"]
+[ext_resource type="Script" path="res://4x_money.gd" id="44_rwo64"]
+[ext_resource type="Script" path="res://4x_skills.gd" id="45_g7o8g"]
+[ext_resource type="Script" path="res://8x_money_2.gd" id="46_5mikl"]
+[ext_resource type="Script" path="res://8x_skills.gd" id="47_5uaqu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -134,11 +140,11 @@ font_size = 24
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jv0qb"]
+[sub_resource type="LabelSettings" id="LabelSettings_qb2gb"]
 line_spacing = 0.0
 font_size = 24
 font_color = Color(1, 1, 0, 1)
-outline_size = 4
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4jq3y"]
@@ -632,6 +638,7 @@ tab_2/title = "Rebirth Upgrades"
 script = ExtResource("23_potsj")
 
 [node name="ToolUpgradeTab" type="Panel" parent="UpgradeMenu/TabBar"]
+visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 417.0
@@ -718,6 +725,12 @@ theme = ExtResource("29_ryaxf")
 text = "Lvl. 0  Foraging Skill x2 : 1P"
 script = ExtResource("30_n8esh")
 
+[node name="MiningRebirthUpgrade4" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
+layout_mode = 2
+theme = ExtResource("29_ryaxf")
+text = "Lvl. 0 Mining Skill x2 : 1P"
+script = ExtResource("33_1sq8s")
+
 [node name="FarmingRebirthUpgrade2" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
@@ -730,14 +743,7 @@ theme = ExtResource("29_ryaxf")
 text = "Lvl. 0  Fishing Skill x2 : 1P"
 script = ExtResource("32_aot1f")
 
-[node name="MiningRebirthUpgrade4" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
-layout_mode = 2
-theme = ExtResource("29_ryaxf")
-text = "Lvl. 0 Mining Skill x2 : 1P"
-script = ExtResource("33_1sq8s")
-
 [node name="SkillUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
-visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 418.0
@@ -756,6 +762,12 @@ theme = ExtResource("29_ryaxf")
 text = "Lvl. 0 Foraging Skill x2 : $100"
 script = ExtResource("34_op7u1")
 
+[node name="MiningSkillUpgrade7" type="Button" parent="UpgradeMenu/TabBar/SkillUpgrades/GridContainer"]
+layout_mode = 2
+theme = ExtResource("29_ryaxf")
+text = "Lvl. 0 Mining Skill x2 : $100"
+script = ExtResource("37_d1wtw")
+
 [node name="FarmingSkillUpgrade5" type="Button" parent="UpgradeMenu/TabBar/SkillUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
@@ -767,12 +779,6 @@ layout_mode = 2
 theme = ExtResource("29_ryaxf")
 text = "Lvl. 0 Fishing Skill x2 : $100"
 script = ExtResource("36_q5krr")
-
-[node name="MiningSkillUpgrade7" type="Button" parent="UpgradeMenu/TabBar/SkillUpgrades/GridContainer"]
-layout_mode = 2
-theme = ExtResource("29_ryaxf")
-text = "Lvl. 0 Mining Skill x2 : $100"
-script = ExtResource("37_d1wtw")
 
 [node name="CombatBackground" type="MeshInstance2D" parent="."]
 position = Vector2(1264, 580.5)
@@ -847,6 +853,50 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("30_xu33u")
 
+[node name="MoneyRebirths" type="GridContainer" parent="Rebirth/RebirthTabBar/NormalRebirths"]
+offset_left = 8.96413
+offset_top = 138.446
+offset_right = 406.964
+offset_bottom = 239.446
+theme_override_constants/h_separation = 50
+columns = 2
+
+[node name="2xMoney" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "2x Money | 5 Points"
+script = ExtResource("42_mafdu")
+
+[node name="2xSkills" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "2x Skills | 25 Points"
+script = ExtResource("43_gmrdx")
+
+[node name="4xMoney" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "4x Money | 25 Points"
+script = ExtResource("44_rwo64")
+
+[node name="4xSkills" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "4x Skills | 75 Points"
+script = ExtResource("45_g7o8g")
+
+[node name="8xMoney2" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "8x Money | 100 Points"
+script = ExtResource("46_5mikl")
+
+[node name="8xSkills" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "8x Skills | 250 Points"
+script = ExtResource("47_5uaqu")
+
+[node name="SkillRebirths" type="GridContainer" parent="Rebirth/RebirthTabBar/NormalRebirths"]
+offset_left = 225.1
+offset_top = 138.446
+offset_right = 405.1
+offset_bottom = 239.446
+
 [node name="SuperRebirths" type="Node2D" parent="Rebirth/RebirthTabBar"]
 visible = false
 
@@ -873,20 +923,19 @@ vertical_alignment = 1
 offset_top = 91.6335
 offset_right = 417.0
 offset_bottom = 158.633
-text = "Rebirth Points: 0"
+text = "TESTING"
 label_settings = SubResource("LabelSettings_6axcv")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("30_xu33u")
 
-[node name="SuperLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths"]
-offset_left = 53.7849
-offset_top = 71.7131
-offset_right = 121.785
-offset_bottom = 105.713
-rotation = -0.0630566
+[node name="SuperRebirthLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths"]
+offset_left = 44.8207
+offset_top = 62.749
+offset_right = 131.821
+offset_bottom = 112.749
+rotation = -0.0430775
 text = "Super"
-label_settings = SubResource("LabelSettings_jv0qb")
+label_settings = SubResource("LabelSettings_qb2gb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -933,6 +982,17 @@ label_settings = SubResource("LabelSettings_4jq3y")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SuperRebirthLabel2" type="Label" parent="Rebirth/RebirthTabBar/UltraRebirths"]
+offset_left = 44.8207
+offset_top = 62.749
+offset_right = 131.821
+offset_bottom = 112.749
+rotation = -0.0430775
+text = "Super"
+label_settings = SubResource("LabelSettings_qb2gb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FishingBar/FishingCheckButton3" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_check_button_3_toggled"]
@@ -964,14 +1024,20 @@ vertical_alignment = 1
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing/FFFBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Fishing" method="_on_fff_buy_max_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/ForagingRebirthUpgrade" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/ForagingRebirthUpgrade" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FarmingRebirthUpgrade2" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FarmingRebirthUpgrade2" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FishingRebirthUpgrade3" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FishingRebirthUpgrade3" method="_on_pressed"]
-[connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/ForagingSkillUpgrade4" to="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/ForagingSkillUpgrade4" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/MiningSkillUpgrade7" to="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/MiningSkillUpgrade7" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/FarmingSkillUpgrade5" to="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/FarmingSkillUpgrade5" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/FishingSkillUpgrade6" to="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/FishingSkillUpgrade6" method="_on_pressed"]
-[connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/MiningSkillUpgrade7" to="UpgradeMenu/TabBar/SkillUpgrades/GridContainer/MiningSkillUpgrade7" method="_on_pressed"]
 [connection signal="tab_selected" from="Rebirth/RebirthTabBar" to="Rebirth/RebirthTabBar" method="_on_tab_selected"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/Button" to="Rebirth/RebirthTabBar/NormalRebirths/Button" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/2xMoney" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/2xMoney" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/2xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/2xSkills" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xMoney" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xMoney" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xSkills" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xMoney2" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xMoney2" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/SuperRebirths/Button" to="Rebirth/RebirthTabBar/SuperRebirths/Button" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/UltraRebirths/Button" to="Rebirth/RebirthTabBar/UltraRebirths/Button" method="_on_pressed"]

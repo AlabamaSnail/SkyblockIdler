@@ -36,7 +36,7 @@ func _process(delta):
 			StatHolder.MoneyforagingProgress = 100
 			StatHolder.MoneyforagingToggle = false  # Stop filling when it reaches 100
 			StatHolder.MoneyforagingProgress = 0
-			StatHolder.money += StatHolder.MoneyforagingStacks  # Add to money based on stacks
+			StatHolder.money += StatHolder.MoneyforagingStacks  * pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0)) # Add to money based on stacks
 
 		# Set the progress bar value
 		self.value = StatHolder.MoneyforagingProgress

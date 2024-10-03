@@ -68,12 +68,16 @@ var foragingRebirthUpgrade = 0
 var farmingRebirthUpgrade = 0
 var fishingRebirthUpgrade = 0
 var miningRebirthUpgrade = 0
+var moneyRebirthUpgrade = 0
+var skillRebirthUpgrade = 0
+
 
 # Skill Upgrades
 var foragingSkillUpgrade = 0
 var farmingSkillUpgrade = 0
 var fishingSkillUpgrade = 0
 var miningSkillUpgrade = 0
+
 
 # Initialize JSON instance
 var json = JSON.new()
@@ -127,6 +131,8 @@ func save_data() -> void:
 			"farmingSkillUpgrade": farmingSkillUpgrade,
 			"fishingSkillUpgrade": fishingSkillUpgrade,
 			"miningSkillUpgrade": miningSkillUpgrade,
+			"moneyRebirthUpgrade": moneyRebirthUpgrade,
+			"skillRebirthUpgrade": skillRebirthUpgrade,
 		}
 		file.store_string(json.stringify(data))  # Convert dictionary to JSON string
 		file.close()
@@ -170,14 +176,16 @@ func load_data() -> void:
 			fishingProgress = json_data.get("fishingProgress", 0)
 			farmingProgress = json_data.get("farmingProgress", 0)
 			rebirthPoints = json_data.get("rebirthPoints", 0)
-			foragingRebirthUpgrade = json_data.get("foragingRebirthUpgrade")
-			farmingRebirthUpgrade = json_data.get("farmingRebirthUpgrade")
-			fishingRebirthUpgrade = json_data.get("fishingRebirthUpgrade")
-			miningRebirthUpgrade = json_data.get("miningRebirthUpgrade")
-			foragingSkillUpgrade = json_data.get("foragingSkillUpgrade")
-			farmingSkillUpgrade = json_data.get("farmingSkillUpgrade")
-			fishingSkillUpgrade = json_data.get("fishingSkillUpgrade")
-			miningSkillUpgrade = json_data.get("miningSkillUpgrade")
+			foragingRebirthUpgrade = json_data.get("foragingRebirthUpgrade", 0)
+			farmingRebirthUpgrade = json_data.get("farmingRebirthUpgrade", 0)
+			fishingRebirthUpgrade = json_data.get("fishingRebirthUpgrade", 0)
+			miningRebirthUpgrade = json_data.get("miningRebirthUpgrade", 0)
+			foragingSkillUpgrade = json_data.get("foragingSkillUpgrade", 0)
+			farmingSkillUpgrade = json_data.get("farmingSkillUpgrade", 0)
+			fishingSkillUpgrade = json_data.get("fishingSkillUpgrade", 0)
+			miningSkillUpgrade = json_data.get("miningSkillUpgrade", 0)
+			moneyRebirthUpgrade = json_data.get("moneyRebirthUpgrade", 0)
+			skillRebirthUpgrade = json_data.get("skillRebirthUpgrade", 0)
 		else:
 			print("Error parsing JSON: ", parse_result)  # Print any parsing errors
 		file.close()
