@@ -68,6 +68,13 @@ var foragingRebirthUpgrade = 0
 var farmingRebirthUpgrade = 0
 var fishingRebirthUpgrade = 0
 var miningRebirthUpgrade = 0
+
+# Skill Upgrades
+var foragingSkillUpgrade = 0
+var farmingSkillUpgrade = 0
+var fishingSkillUpgrade = 0
+var miningSkillUpgrade = 0
+
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -116,6 +123,10 @@ func save_data() -> void:
 			"farmingRebirthUpgrade": farmingRebirthUpgrade,
 			"fishingRebirthUpgrade": fishingRebirthUpgrade,
 			"miningRebirthUpgrade": miningRebirthUpgrade,
+			"foragingSkillUpgrade": foragingSkillUpgrade,
+			"farmingSkillUpgrade": farmingSkillUpgrade,
+			"fishingSkillUpgrade": fishingSkillUpgrade,
+			"miningSkillUpgrade": miningSkillUpgrade,
 		}
 		file.store_string(json.stringify(data))  # Convert dictionary to JSON string
 		file.close()
@@ -163,6 +174,10 @@ func load_data() -> void:
 			farmingRebirthUpgrade = json_data.get("farmingRebirthUpgrade")
 			fishingRebirthUpgrade = json_data.get("fishingRebirthUpgrade")
 			miningRebirthUpgrade = json_data.get("miningRebirthUpgrade")
+			foragingSkillUpgrade = json_data.get("foragingSkillUpgrade")
+			farmingSkillUpgrade = json_data.get("farmingSkillUpgrade")
+			fishingSkillUpgrade = json_data.get("fishingSkillUpgrade")
+			miningSkillUpgrade = json_data.get("miningSkillUpgrade")
 		else:
 			print("Error parsing JSON: ", parse_result)  # Print any parsing errors
 		file.close()

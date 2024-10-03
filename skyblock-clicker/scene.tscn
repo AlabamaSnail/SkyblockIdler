@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=60 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -36,6 +36,8 @@
 [ext_resource type="Script" path="res://farming_rebirth_upgrade_2.gd" id="31_vkeyj"]
 [ext_resource type="Script" path="res://fishing_rebirth_upgrade_3.gd" id="32_aot1f"]
 [ext_resource type="Script" path="res://mining_rebirth_upgrade_4.gd" id="33_1sq8s"]
+[ext_resource type="Script" path="res://foraging_skill_upgrade.gd" id="34_op7u1"]
+[ext_resource type="Script" path="res://farming_skill_upgrade.gd" id="35_ej4y3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -676,6 +678,7 @@ offset_bottom = 31.0
 text = "Buy Max : "
 
 [node name="RebirthUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
+visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 418.0
@@ -683,49 +686,58 @@ offset_bottom = 518.0
 
 [node name="GridContainer" type="GridContainer" parent="UpgradeMenu/TabBar/RebirthUpgrades"]
 layout_mode = 0
-offset_left = 59.0
-offset_top = 58.0
-offset_right = 373.0
-offset_bottom = 222.0
+offset_right = 417.0
+offset_bottom = 164.0
+theme_override_constants/h_separation = 11
 columns = 2
 
 [node name="ForagingRebirthUpgrade" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
-text = "Foraging Skill x2 : 1P"
+text = "Lvl. 0  Foraging Skill x2 : 1P"
 script = ExtResource("30_n8esh")
 
 [node name="FarmingRebirthUpgrade2" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
-text = "Farming Skill x2 : 1P"
+text = "Lvl. 0  Farming Skill x2 : 1P"
 script = ExtResource("31_vkeyj")
 
 [node name="FishingRebirthUpgrade3" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
-text = "Fishing Skill x2 : 1P"
+text = "Lvl. 0  Fishing Skill x2 : 1P"
 script = ExtResource("32_aot1f")
 
 [node name="MiningRebirthUpgrade4" type="Button" parent="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer"]
 layout_mode = 2
 theme = ExtResource("29_ryaxf")
-text = "Fishing Skill x2 : 1P"
+text = "Lvl. 0 Mining Skill x2 : 1P"
 script = ExtResource("33_1sq8s")
 
 [node name="SkillUpgrades" type="Panel" parent="UpgradeMenu/TabBar"]
-visible = false
 layout_mode = 0
 offset_top = 40.0
 offset_right = 396.0
 offset_bottom = 518.0
 
-[node name="TextEdit" type="TextEdit" parent="UpgradeMenu/TabBar/SkillUpgrades"]
-layout_mode = 0
-offset_right = 396.0
-offset_bottom = 477.0
-text = "Testing ig
-"
+[node name="ForagingSkillUpgrade4" type="Button" parent="UpgradeMenu/TabBar/SkillUpgrades"]
+offset_left = 97.0
+offset_top = 50.0
+offset_right = 283.0
+offset_bottom = 73.0
+theme = ExtResource("29_ryaxf")
+text = "Lvl. 0 Foraging Skill x2 : $100"
+script = ExtResource("34_op7u1")
+
+[node name="FarmingSkillUpgrade5" type="Button" parent="UpgradeMenu/TabBar/SkillUpgrades"]
+offset_left = 97.0
+offset_top = 87.0
+offset_right = 315.0
+offset_bottom = 110.0
+theme = ExtResource("29_ryaxf")
+text = "Lvl. 0 Farming Skill x2 : $100"
+script = ExtResource("35_ej4y3")
 
 [node name="CombatBackground" type="MeshInstance2D" parent="."]
 position = Vector2(1264, 580.5)
@@ -816,4 +828,6 @@ script = ExtResource("30_xu33u")
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FarmingRebirthUpgrade2" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FarmingRebirthUpgrade2" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FishingRebirthUpgrade3" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/FishingRebirthUpgrade3" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" to="UpgradeMenu/TabBar/RebirthUpgrades/GridContainer/MiningRebirthUpgrade4" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/ForagingSkillUpgrade4" to="UpgradeMenu/TabBar/SkillUpgrades/ForagingSkillUpgrade4" method="_on_pressed"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/SkillUpgrades/FarmingSkillUpgrade5" to="UpgradeMenu/TabBar/SkillUpgrades/FarmingSkillUpgrade5" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/Button" to="Rebirth/Button" method="_on_pressed"]
