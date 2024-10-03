@@ -47,6 +47,10 @@ func _on_pressed() -> void:
 		StatHolder.MoneyforagingStacks = 1
 		StatHolder.MoneyfishingStacks = 1
 		StatHolder.MoneyminingStacks = 1
+		StatHolder.foragingSkillUpgrade = 0
+		StatHolder.farmingSkillUpgrade = 0
+		StatHolder.fishingSkillUpgrade = 0
+		StatHolder.miningSkillUpgrade = 0
 		# Reset upgrades and money
 		StatHolder.money = 0
 
