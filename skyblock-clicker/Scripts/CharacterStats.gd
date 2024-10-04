@@ -22,7 +22,9 @@ var social = 0
 
 # Misc
 var money = 1500
-var rebirthPoints = 0
+var rebirthPoints = 75
+var superRebirthPoints = 0
+var ultraRebirthPoints = 0
 var strength = 0
 var intelligence = 0
 var defense = 0
@@ -58,10 +60,10 @@ var MoneyminingToggle = false
 var MoneyfarmingToggle = false
 var MoneyfishingToggle = false
 
-var MoneyforagingStacks = 1
-var MoneyminingStacks = 1
-var MoneyfarmingStacks = 1
-var MoneyfishingStacks = 1
+var MoneyforagingStacks = Big.new(1)
+var MoneyminingStacks = Big.new(1)
+var MoneyfarmingStacks = Big.new(1)
+var MoneyfishingStacks = Big.new(1)
 
 # Rebirth Upgrades
 var foragingRebirthUpgrade = 0
@@ -133,6 +135,8 @@ func save_data() -> void:
 			"miningSkillUpgrade": miningSkillUpgrade,
 			"moneyRebirthUpgrade": moneyRebirthUpgrade,
 			"skillRebirthUpgrade": skillRebirthUpgrade,
+			"superRebirthPoints": superRebirthPoints,
+			"ultraRebirthPoints": ultraRebirthPoints,
 		}
 		file.store_string(json.stringify(data))  # Convert dictionary to JSON string
 		file.close()
@@ -186,6 +190,8 @@ func load_data() -> void:
 			miningSkillUpgrade = json_data.get("miningSkillUpgrade", 0)
 			moneyRebirthUpgrade = json_data.get("moneyRebirthUpgrade", 0)
 			skillRebirthUpgrade = json_data.get("skillRebirthUpgrade", 0)
+			superRebirthPoints = json_data.get("superRebirthPoints", 0)
+			ultraRebirthPoints = json_data.get("ultraRebirthPoints", 0)
 		else:
 			print("Error parsing JSON: ", parse_result)  # Print any parsing errors
 		file.close()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=75 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfishing.gd" id="20_f2y76"]
 [ext_resource type="Script" path="res://m_fishing_progress_bar.gd" id="21_iqkso"]
 [ext_resource type="Script" path="res://tab_bar.gd" id="23_potsj"]
+[ext_resource type="Script" path="res://buy_all.gd" id="25_7dllf"]
 [ext_resource type="Script" path="res://Rebirthbutton.gd" id="28_8k2ct"]
 [ext_resource type="Script" path="res://label.gd" id="29_3rxki"]
 [ext_resource type="Theme" uid="uid://cbg535xpvqdk5" path="res://RebirthButtonTheme.tres" id="29_ryaxf"]
@@ -47,6 +48,8 @@
 [ext_resource type="Script" path="res://4x_skills.gd" id="45_g7o8g"]
 [ext_resource type="Script" path="res://8x_money_2.gd" id="46_5mikl"]
 [ext_resource type="Script" path="res://8x_skills.gd" id="47_5uaqu"]
+[ext_resource type="Script" path="res://SuperRebirthbutton.gd" id="48_40vx5"]
+[ext_resource type="Script" path="res://super_rebirth_points_label.gd" id="49_tnbam"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -656,6 +659,14 @@ text = "Upgrades"
 label_settings = SubResource("LabelSettings_otpwe")
 horizontal_alignment = 1
 
+[node name="BuyAll" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Label"]
+layout_mode = 2
+offset_left = -104.0
+offset_right = -16.0
+offset_bottom = 31.0
+text = "Buy All : 0"
+script = ExtResource("25_7dllf")
+
 [node name="Foraging" type="Button" parent="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel"]
 layout_mode = 2
 text = "Lvl. 0 Axe | $20"
@@ -900,7 +911,7 @@ offset_top = 411.355
 offset_right = 284.458
 offset_bottom = 460.355
 text = "Rebirth"
-script = ExtResource("28_8k2ct")
+script = ExtResource("48_40vx5")
 
 [node name="PointsGainedLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths/Button"]
 layout_mode = 0
@@ -913,7 +924,7 @@ label_settings = SubResource("LabelSettings_carkc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RebirthPointsLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths"]
+[node name="SuperRebirthPointsLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths"]
 offset_top = 91.6335
 offset_right = 417.0
 offset_bottom = 158.633
@@ -921,6 +932,7 @@ text = "TESTING"
 label_settings = SubResource("LabelSettings_6axcv")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("49_tnbam")
 
 [node name="SuperRebirthLabel" type="Label" parent="Rebirth/RebirthTabBar/SuperRebirths"]
 offset_left = 44.8207
@@ -1009,6 +1021,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="Clickers/MoneyBars/CLICKALL" to="Clickers/MoneyBars/FarmingBar/MFarmingProgressBar" method="_on_clickall_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/CLICKALL" to="Clickers/MoneyBars/FishingBar/MFishingProgressBar" method="_on_clickall_pressed"]
 [connection signal="tab_selected" from="UpgradeMenu/TabBar" to="UpgradeMenu/TabBar" method="_on_tab_selected"]
+[connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Label/BuyAll" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Label/BuyAll" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" method="_on_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging/FBuyMaxButton" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Foraging" method="_on_buymaxbutton_pressed"]
 [connection signal="pressed" from="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining" to="UpgradeMenu/TabBar/ToolUpgradeTab/ToolUpgradePanel/Mining" method="_on_pressed"]

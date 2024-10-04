@@ -1,7 +1,6 @@
 extends Label
 
-var Money = 0
-
+var Money = Big.new(0)
 func _ready():
 	pass
 
@@ -9,9 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	Money = StatHolder.money
+	Money = Big.new(StatHolder.money)
 
-	self.text = "Money: $" + str(Money)    # Set Skill
+	self.text = "Money: $" + str(Money.toAA())    # Set Skill
 
 
 
