@@ -6,7 +6,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.text = "Lvl. " + str(StatHolder.farmingSkillUpgrade) + " Fishing Skill x2 : $" + str((StatHolder.fishingSkillUpgrade ** 4 + 200) / 2)
+	self.text = "Lvl. " + str(StatHolder.fishingSkillUpgrade) + " Fishing Skill x2 : $" + str((StatHolder.fishingSkillUpgrade ** 4 + 200) / 2)
 
 func _on_pressed() -> void:
 	if StatHolder.money >= ((StatHolder.fishingSkillUpgrade ** 4 + 200) / 2):

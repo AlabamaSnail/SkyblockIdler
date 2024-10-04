@@ -628,13 +628,13 @@ offset_top = 81.0
 offset_right = 713.0
 offset_bottom = 121.0
 current_tab = 0
-drag_to_rearrange_enabled = true
 tab_count = 3
 tab_0/title = "Tool Upgrades"
 tab_0/tooltip = "Upgrades to increase money speed"
 tab_1/title = "Skill Upgrades"
-tab_1/tooltip = "Upgraes to increase how fast you level up skills"
+tab_1/tooltip = "Upgrades to increase how fast you level up skills"
 tab_2/title = "Rebirth Upgrades"
+tab_2/tooltip = "Rebirth Upgrades do stuff"
 script = ExtResource("23_potsj")
 
 [node name="ToolUpgradeTab" type="Panel" parent="UpgradeMenu/TabBar"]
@@ -890,12 +890,6 @@ script = ExtResource("46_5mikl")
 layout_mode = 2
 text = "8x Skills | 250 Points"
 script = ExtResource("47_5uaqu")
-
-[node name="SkillRebirths" type="GridContainer" parent="Rebirth/RebirthTabBar/NormalRebirths"]
-offset_left = 225.1
-offset_top = 138.446
-offset_right = 405.1
-offset_bottom = 239.446
 
 [node name="SuperRebirths" type="Node2D" parent="Rebirth/RebirthTabBar"]
 visible = false

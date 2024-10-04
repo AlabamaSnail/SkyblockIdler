@@ -15,25 +15,21 @@ func _process(delta: float) -> void:
 		hue_value = 0.0  # Loop the hue back to 0
 	
 	var rainbow_color = hue_to_rgb(hue_value)
-	
-	# Duplicate the current theme to modify it
-	var new_theme = self.theme.duplicate()  
-	new_theme.set_color("font_selected_color", "TabBar", rainbow_color)
-	
-	# Apply the new theme back to the TabBar
-	self.theme = new_theme
 
+	# Check if the current theme is not null before modifying it
+	if self.theme:
+		# Duplicate the current theme to modify it
+		var new_theme = self.theme.duplicate()
+		if new_theme.has_color("font_selected_color", "TabBar"):  # Ensure the color property exists
+			new_theme.set_color("font_selected_color", "TabBar", rainbow_color)
+			
+			# Apply the new theme back to the TabBar
+			self.theme = new_theme
+		else:
+			print_debug("font_selected_color not found for TabBar")
 
+# Handle tab selection
 func _on_tab_selected(tab: int) -> void:
-	if tab == 0:
-		$NormalRebirths.visible = true
-		$SuperRebirths.visible = false
-		$UltraRebirths.visible = false
-	if tab == 1:
-		$NormalRebirths.visible = false
-		$SuperRebirths.visible = true
-		$UltraRebirths.visible = false
-	if tab == 2:
-		$NormalRebirths.visible = false
-		$SuperRebirths.visible = false
-		$UltraRebirths.visible = true
+	$NormalRebirths.visible = tab == 0
+	$SuperRebirths.visible = tab == 1
+	$UltraRebirths.visible = tab == 2

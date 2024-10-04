@@ -2,7 +2,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if StatHolder.moneyRebirthUpgrade == 2:
+	if StatHolder.moneyRebirthUpgrade >= 2:
 		self.disabled = true
 
 func _on_pressed() -> void:

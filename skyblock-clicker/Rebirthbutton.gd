@@ -2,6 +2,7 @@ extends Button
 
 # Reference to the StatHolder for accessing skill levels and money
 var test = 0
+var maxMoneyRun = 0
 func _ready() -> void:
 	# Initialize button text with current rebirth points
 	update_rebirth_button_text()
@@ -14,7 +15,7 @@ func calculate_rebirth_points() -> int:
 	for skill_level in skill_levels:
 		total_skill_level += pow(skill_level, 1.5)  # Scaling factor for levels
 	
-	var money_factor = log(StatHolder.money + 1)  # Logarithmic scaling of money
+	var money_factor = log(maxMoneyRun + 1)  # Logarithmic scaling of money
 	
 	# Calculate rebirth points and ensure a minimum of 1 rebirth point
 	var points = int((total_skill_level * money_factor) * 0.001)
@@ -53,6 +54,7 @@ func _on_pressed() -> void:
 		StatHolder.miningSkillUpgrade = 0
 		# Reset upgrades and money
 		StatHolder.money = 0
+		maxMoneyRun = 0
 
 		# Update the button text to show new rebirth points
 		update_rebirth_button_text()
@@ -68,3 +70,5 @@ func update_rebirth_button_text() -> void:
 	
 func _process(delta: float) -> void:
 	update_rebirth_button_text()
+	if StatHolder.money >= maxMoneyRun:
+		maxMoneyRun = StatHolder.money
