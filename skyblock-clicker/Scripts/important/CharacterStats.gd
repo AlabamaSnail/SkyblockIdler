@@ -86,8 +86,7 @@ var json = JSON.new()
 
 func _ready() -> void:
 	# Connect the application_exiting signal to your function
-	OS.connect("application_exiting", Callable(self, "_on_application_exiting"))
-
+	get_tree().set_auto_accept_quit(false)
 	# Configuration for SilentWolf
 	SilentWolf.configure({
 		"api_key": "mgDYwXWgoG4xucRkL4j0M3oDhs5l8SdQ35AcdJEH",
@@ -100,24 +99,26 @@ func _ready() -> void:
 
 	# Retrieve player data
 	var test = await SilentWolf.Players.get_player_data("TesterPlayer").sw_get_player_data_complete
-
 	# Load data when the game starts
 	load_data()  
 
-
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Tried Closing")
+		await save_datapt2()
+		get_tree().quit() # default behavior
 
 func _exit_tree() -> void:
-	save_datapt2()
-	save_data()  # Save the data when the game is about to close
+	save_data()  # Perform synchronous save first
 
 
 func save_datapt2() -> void:
 	var data = {"Money": 25}
 
 	# Ensure save is completed before exiting
-	var save_result = await SilentWolf.Players.save_player_data("TesterPlayer", data)
+	await SilentWolf.Players.save_player_data("TesterPlayer", data)
 
-	print("Player data saved: ", save_result)
+	print("Player data saved")
 
 # Function to save skill data
 func save_data() -> void:
