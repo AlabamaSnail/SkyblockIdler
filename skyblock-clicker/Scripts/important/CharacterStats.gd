@@ -97,8 +97,9 @@ func _ready() -> void:
 		"open_scene_on_close": "res://scene.tscn"
 	})
 
+	
 	# Retrieve player data
-	var test = await SilentWolf.Players.get_player_data("TesterPlayer").sw_get_player_data_complete
+	var test = await SilentWolf.Players.get_player_data("TestingPlayer").sw_get_player_data_complete
 	# Load data when the game starts
 	load_data()  
 
@@ -106,6 +107,7 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("Tried Closing")
 		await save_datapt2()
+		await get_tree().create_timer(0.5).timeout
 		get_tree().quit() # default behavior
 
 func _exit_tree() -> void:
@@ -113,11 +115,54 @@ func _exit_tree() -> void:
 
 
 func save_datapt2() -> void:
-	var data = {"Money": 25}
+	var data = {
+			"foraging": foraging,
+			"mining": mining,
+			"farming": farming,
+			"fishing": fishing,
+			"combat": combat,
+			"catacombs": catacombs,
+			"alchemy": alchemy,
+			"carpentry": carpentry,
+			"runecrafting": runecrafting,
+			"enchanting": enchanting,
+			"taming": taming,
+			"social": social,
+			"money": money.toString(),
+			"strength": strength,
+			"intelligence": intelligence,
+			"defense": defense,
+			"health": health,
+			"foragingTool": foragingTool,
+			"miningTool": miningTool,
+			"farmingTool": farmingTool,
+			"fishingTool": fishingTool,
+			"foragingToggle": foragingToggle,
+			"miningToggle": miningToggle,
+			"farmingToggle": farmingToggle,
+			"fishingToggle": fishingToggle,
+			"foragingProgress": foragingProgress,
+			"miningProgress": miningProgress,
+			"farmingProgress": farmingProgress,
+			"fishingProgress": fishingProgress,
+			"rebirthPoints": rebirthPoints,
+			"foragingRebirthUpgrade": foragingRebirthUpgrade,
+			"farmingRebirthUpgrade": farmingRebirthUpgrade,
+			"fishingRebirthUpgrade": fishingRebirthUpgrade,
+			"miningRebirthUpgrade": miningRebirthUpgrade,
+			"foragingSkillUpgrade": foragingSkillUpgrade,
+			"farmingSkillUpgrade": farmingSkillUpgrade,
+			"fishingSkillUpgrade": fishingSkillUpgrade,
+			"miningSkillUpgrade": miningSkillUpgrade,
+			"moneyRebirthUpgrade": moneyRebirthUpgrade,
+			"skillRebirthUpgrade": skillRebirthUpgrade,
+			"superRebirthPoints": superRebirthPoints,
+			"ultraRebirthPoints": ultraRebirthPoints,
+		}
 
 	# Ensure save is completed before exiting
-	await SilentWolf.Players.save_player_data("TesterPlayer", data)
-
+	await SilentWolf.Players.save_player_data("TestingPlayer", data)
+	
 	print("Player data saved")
 
 # Function to save skill data
