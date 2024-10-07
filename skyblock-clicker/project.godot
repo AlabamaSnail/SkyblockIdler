@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-StatHolder="*res://Scripts/CharacterStats.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+StatHolder="*res://Scripts/important/CharacterStats.gd"
 
 [display]
 
@@ -26,3 +27,7 @@ window/size/viewport_height=1080
 window/size/mode=4
 window/size/resizable=false
 window/size/borderless=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")

@@ -85,10 +85,39 @@ var miningSkillUpgrade = 0
 var json = JSON.new()
 
 func _ready() -> void:
-	load_data()  # Load the data when the game starts
+	# Connect the application_exiting signal to your function
+	OS.connect("application_exiting", Callable(self, "_on_application_exiting"))
+
+	# Configuration for SilentWolf
+	SilentWolf.configure({
+		"api_key": "mgDYwXWgoG4xucRkL4j0M3oDhs5l8SdQ35AcdJEH",
+		"game_id": "SnailClicker",
+		"log_level": 1
+	})
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://scene.tscn"
+	})
+
+	# Retrieve player data
+	var test = await SilentWolf.Players.get_player_data("TesterPlayer").sw_get_player_data_complete
+
+	# Load data when the game starts
+	load_data()  
+
+
 
 func _exit_tree() -> void:
+	save_datapt2()
 	save_data()  # Save the data when the game is about to close
+
+
+func save_datapt2() -> void:
+	var data = {"Money": 25}
+
+	# Ensure save is completed before exiting
+	var save_result = await SilentWolf.Players.save_player_data("TesterPlayer", data)
+
+	print("Player data saved: ", save_result)
 
 # Function to save skill data
 func save_data() -> void:
