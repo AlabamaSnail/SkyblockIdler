@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=75 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/CharacterStats.gd" id="3_yepde"]
@@ -50,13 +50,6 @@
 [ext_resource type="Script" path="res://8x_skills.gd" id="47_5uaqu"]
 [ext_resource type="Script" path="res://SuperRebirthbutton.gd" id="48_40vx5"]
 [ext_resource type="Script" path="res://super_rebirth_points_label.gd" id="49_tnbam"]
-[ext_resource type="Script" path="res://dev_menu_button.gd" id="51_3guhp"]
-[ext_resource type="Script" path="res://give_money_1k.gd" id="52_0crbe"]
-[ext_resource type="Script" path="res://give_money_1m.gd" id="53_otois"]
-[ext_resource type="Script" path="res://give_money_1b.gd" id="54_23ug7"]
-[ext_resource type="Script" path="res://give_rebirth_10.gd" id="55_mt6m1"]
-[ext_resource type="Script" path="res://give_rebirth_100.gd" id="56_thu4q"]
-[ext_resource type="Script" path="res://give_rebirth_1k.gd" id="57_bgpt6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lh5sc"]
 font_size = 14
@@ -1006,56 +999,6 @@ label_settings = SubResource("LabelSettings_qb2gb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DevMenu" type="Node2D" parent="."]
-
-[node name="DevMenuButton" type="Button" parent="DevMenu"]
-offset_top = 1050.0
-offset_right = 86.0
-offset_bottom = 1081.0
-text = "Dev Menu"
-script = ExtResource("51_3guhp")
-
-[node name="DevMenuGrid" type="GridContainer" parent="DevMenu/DevMenuButton"]
-visible = false
-offset_left = 4.0
-offset_top = -70.0
-offset_right = 288.0
-offset_bottom = -4.0
-columns = 3
-
-[node name="GiveMoney1k" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give $1k"
-script = ExtResource("52_0crbe")
-
-[node name="GiveMoney1m" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give $1M"
-script = ExtResource("53_otois")
-
-[node name="GiveMoney1B" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give $1B"
-script = ExtResource("54_23ug7")
-
-[node name="GiveRebirth10" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give 10 RP
-"
-script = ExtResource("55_mt6m1")
-
-[node name="GiveRebirth100" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give 100 RP
-"
-script = ExtResource("56_thu4q")
-
-[node name="GiveRebirth1k" type="Button" parent="DevMenu/DevMenuButton/DevMenuGrid"]
-layout_mode = 2
-text = "Give 1k RP
-"
-script = ExtResource("57_bgpt6")
-
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FishingBar/FishingCheckButton3" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_check_button_3_toggled"]
@@ -1105,10 +1048,3 @@ script = ExtResource("57_bgpt6")
 [connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/SuperRebirths/Button" to="Rebirth/RebirthTabBar/SuperRebirths/Button" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/UltraRebirths/Button" to="Rebirth/RebirthTabBar/UltraRebirths/Button" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton" to="DevMenu/DevMenuButton" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1k" to="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1k" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1m" to="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1m" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1B" to="DevMenu/DevMenuButton/DevMenuGrid/GiveMoney1B" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth10" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth10" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth100" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth100" method="_on_pressed"]
-[connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth1k" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth1k" method="_on_pressed"]

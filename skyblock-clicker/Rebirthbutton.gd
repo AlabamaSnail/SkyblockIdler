@@ -1,8 +1,8 @@
 extends Button
 
 # Reference to the StatHolder for accessing skill levels and money
-var test = 0
-var maxMoneyRun = 0
+var maxMoneyRun = Big.new(0)
+
 func _ready() -> void:
 	# Initialize button text with current rebirth points
 	update_rebirth_button_text()
@@ -15,19 +15,20 @@ func calculate_rebirth_points() -> int:
 	for skill_level in skill_levels:
 		total_skill_level += pow(skill_level, 1.5)  # Scaling factor for levels
 	
-	var money_factor = log(maxMoneyRun + 1)  # Logarithmic scaling of money
-	
+	var money_factor = maxMoneyRun.plus(1).absLog10()
+
 	# Calculate rebirth points and ensure a minimum of 1 rebirth point
 	var points = int((total_skill_level * money_factor) * 0.001)
-	return points  # Ensure at least 1 rebirth point if all conditions are met
+	return points
 
 # Function called when the rebirth button is pressed
 func _on_pressed() -> void:
 	if can_rebirth():
 		# Calculate rebirth points
+		var points = calculate_rebirth_points()
 
 		# Reset all skills, progress, and upgrades
-		StatHolder.rebirthPoints += calculate_rebirth_points()
+		StatHolder.rebirthPoints += points
 		StatHolder.foraging = 0
 		StatHolder.mining = 0
 		StatHolder.farming = 0
@@ -52,9 +53,10 @@ func _on_pressed() -> void:
 		StatHolder.farmingSkillUpgrade = 0
 		StatHolder.fishingSkillUpgrade = 0
 		StatHolder.miningSkillUpgrade = 0
+		
 		# Reset upgrades and money
-		StatHolder.money = 0
-		maxMoneyRun = 0
+		StatHolder.money = Big.new(0)
+		maxMoneyRun = Big.new(0)
 
 		# Update the button text to show new rebirth points
 		update_rebirth_button_text()
@@ -66,9 +68,8 @@ func can_rebirth() -> bool:
 # Function to update the rebirth button text
 func update_rebirth_button_text() -> void:
 	$PointsGainedLabel.text = "Points Gained: %d" % calculate_rebirth_points()
-	
-	
+
 func _process(delta: float) -> void:
 	update_rebirth_button_text()
-	if StatHolder.money >= maxMoneyRun:
-		maxMoneyRun = StatHolder.money
+	if StatHolder.money.isGreaterThanOrEqualTo(maxMoneyRun):
+		maxMoneyRun = Big.new(StatHolder.money)

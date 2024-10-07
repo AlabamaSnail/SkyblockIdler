@@ -35,7 +35,7 @@ func _process(delta):
 			StatHolder.MoneyfishingProgress = 100
 			StatHolder.MoneyfishingToggle = false  # Stop filling when it reaches 100
 			StatHolder.MoneyfishingProgress = 0
-			StatHolder.money += StatHolder.MoneyfishingStacks * pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0))  # Add to money based on stacks
+			StatHolder.money.plusEquals(StatHolder.MoneyfishingStacks * pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0)))  # Add to money based on stacks
 
 		# Set the progress bar value
 		self.value = StatHolder.MoneyfishingProgress

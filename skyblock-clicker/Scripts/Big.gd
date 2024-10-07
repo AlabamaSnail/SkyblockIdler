@@ -725,7 +725,7 @@ func toFloat() -> float:
 	return snappedf(float(str(mantissa) + "e" + str(exponent)),0.01)
 
 
-func toPrefix(no_decimals_on_small_values = false, use_thousand_symbol=true, force_decimals=true, scientic_prefix=false) -> String:
+func toPrefix(no_decimals_on_small_values = true, use_thousand_symbol=true, force_decimals=false, scientic_prefix=false) -> String:
 	var number: float = mantissa
 	if not scientic_prefix:
 		var hundreds = 1
@@ -876,7 +876,7 @@ func toMetricName(no_decimals_on_small_values = false) -> String:
 # like the other functions
 ## Converts the Big Number into a string (in AA format)
 ## @deprecated
-func toAA(no_decimals_on_small_values = false, use_thousand_symbol = true, force_decimals=false) -> String:
+func toAA(no_decimals_on_small_values = true, use_thousand_symbol = true, force_decimals= false) -> String:
 	@warning_ignore("integer_division")
 	var target := int(exponent / 3)
 	var aa_index := str(target)

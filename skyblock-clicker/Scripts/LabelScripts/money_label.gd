@@ -9,7 +9,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Money = Big.new(StatHolder.money)
-
+	Money.setSuffixSeparator(" ")
+	Money.setDecimalSeparator(".")
+	Money.setThousandDecimals(1)  # Defaults to 2  
 	self.text = "Money: $" + str(Money.toAA())    # Set Skill
 
 

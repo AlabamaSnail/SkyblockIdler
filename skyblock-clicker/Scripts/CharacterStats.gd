@@ -21,7 +21,7 @@ var taming = 0
 var social = 0
 
 # Misc
-var money = 1500
+var money = Big.new(0)
 var rebirthPoints = 75
 var superRebirthPoints = 0
 var ultraRebirthPoints = 0
@@ -60,10 +60,10 @@ var MoneyminingToggle = false
 var MoneyfarmingToggle = false
 var MoneyfishingToggle = false
 
-var MoneyforagingStacks = Big.new(1)
-var MoneyminingStacks = Big.new(1)
-var MoneyfarmingStacks = Big.new(1)
-var MoneyfishingStacks = Big.new(1)
+var MoneyforagingStacks = 1
+var MoneyminingStacks = 1
+var MoneyfarmingStacks = 1
+var MoneyfishingStacks = 1
 
 # Rebirth Upgrades
 var foragingRebirthUpgrade = 0
@@ -107,7 +107,7 @@ func save_data() -> void:
 			"enchanting": enchanting,
 			"taming": taming,
 			"social": social,
-			"money": money,
+			"money": money.toString(),
 			"strength": strength,
 			"intelligence": intelligence,
 			"defense": defense,
@@ -162,7 +162,7 @@ func load_data() -> void:
 			enchanting = json_data.get("enchanting", 0)
 			taming = json_data.get("taming", 0)
 			social = json_data.get("social", 0)
-			money = json_data.get("money", 0)
+			money = Big.new(json_data.get("money", "0"))
 			strength = json_data.get("strength", 0)
 			intelligence = json_data.get("intelligence", 0)
 			defense = json_data.get("defense", 0)

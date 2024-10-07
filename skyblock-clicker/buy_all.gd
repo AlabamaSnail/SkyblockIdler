@@ -19,15 +19,16 @@ func calculate_total_possible_upgrades() -> int:
 	var foraging = StatHolder.foragingTool
 	var mining = StatHolder.miningTool
 
-	var money = StatHolder.money
+	# Create a copy of the player's money by creating a new Big instance
+	var money = Big.new(StatHolder.money)  # Duplicate the money value
 	var upgrades = 0
 
 	while true:
 		var lowest_tool = get_temp_lowest_tool_level(farming, fishing, foraging, mining)
-		var cost = calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining)
+		var cost = Big.new(calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining))
 		
-		if money >= cost:
-			money -= cost
+		if money.isGreaterThanOrEqualTo(cost):
+			money.minusEquals(cost) # Modify the copy, not the actual player's money
 			upgrades += 1
 			match lowest_tool:
 				"farming":
@@ -53,10 +54,10 @@ func buy_all_tools_evenly() -> void:
 
 	while true:
 		var lowest_tool = get_temp_lowest_tool_level(farming, fishing, foraging, mining)
-		var cost = calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining)
+		var cost = Big.new(calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining))
 		
-		if money >= cost:
-			money -= cost
+		if money.isGreaterThanOrEqualTo(cost):
+			money.minusEquals(cost)
 			match lowest_tool:
 				"farming":
 					farming += 1

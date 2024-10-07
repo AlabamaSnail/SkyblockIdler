@@ -2,17 +2,18 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + str(StatHolder.farmingTool ** 3 + 20)
+	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + Big.new((StatHolder.farmingTool ** 3 + 20)).toAA()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$FFBuyMaxButton.text = "Buy Max : " + str(calculate_max_upgrades())
-	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + str(StatHolder.farmingTool ** 3 + 20)
+	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + Big.new((StatHolder.farmingTool ** 3 + 20)).toAA()
+
 func _on_pressed() -> void:
-	if StatHolder.money >= (StatHolder.farmingTool ** 3 + 20):
-		StatHolder.money -= (StatHolder.farmingTool ** 3 + 20)
+	if StatHolder.money.isGreaterThanOrEqualTo(Big.new(StatHolder.farmingTool ** 3 + 20)):
+		StatHolder.money.minusEquals(Big.new(StatHolder.farmingTool ** 3 + 20))
 		StatHolder.farmingTool += 1
-		self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + str(StatHolder.farmingTool ** 3 + 20)
+		self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + Big.new((StatHolder.farmingTool ** 3 + 20)).toAA()
 	else:
 		self.disabled = true
 		await get_tree().create_timer(0.2).timeout
@@ -20,14 +21,14 @@ func _on_pressed() -> void:
 
 func calculate_max_upgrades() -> int:
 	var upgrades = 0
-	var money = StatHolder.money
-	var cost = StatHolder.farmingTool ** 3 + 20
+	var money = Big.new(StatHolder.money)  # Ensure money is a Big object
+	var cost = Big.new(StatHolder.farmingTool ** 3 + 20)  # Convert cost to Big
 
 	# Calculate how many upgrades the player can afford
-	while money >= cost:
-		money -= cost
+	while money.isGreaterThanOrEqualTo(cost):
+		money.minusEquals(cost)
 		upgrades += 1
-		cost = (StatHolder.farmingTool + upgrades) ** 3 + 20 # Update cost for next upgrade
+		cost = Big.new((StatHolder.farmingTool + upgrades) ** 3 + 20)  # Update and convert cost to Big
 	return upgrades
 
 func _on_ff_buy_max_button_pressed() -> void:
@@ -35,8 +36,9 @@ func _on_ff_buy_max_button_pressed() -> void:
 
 	# Apply all the upgrades
 	for i in range(max_upgrades):
-		StatHolder.money -= (StatHolder.farmingTool ** 3 + 20)
+		var upgrade_cost = Big.new(StatHolder.farmingTool ** 3 + 20)  # Convert to Big
+		StatHolder.money.minusEquals(upgrade_cost)  # Subtract using Big operation
 		StatHolder.farmingTool += 1
 
 	# Update the text to reflect the new level and cost
-	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + str(StatHolder.farmingTool ** 3 + 20)
+	self.text = "Lvl. " + str(StatHolder.farmingTool) + " Hoe | $" + Big.new((StatHolder.farmingTool ** 3 + 20)).toAA()
