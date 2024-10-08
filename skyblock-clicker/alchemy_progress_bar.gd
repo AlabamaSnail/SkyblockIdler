@@ -38,7 +38,7 @@ func _process(delta):
 
 
 func _on_alchemy_button_pressed() -> void:
-	var cost = Big.new(StatHolder.alchemy ** 5 + 125)  # Calculate cost using Big
+	var cost = Big.new(StatHolder.alchemy ** 5 + 250)  # Calculate cost using Big
 	if StatHolder.money.isGreaterThanOrEqualTo(cost):
 		StatHolder.money.minusEquals(cost)
 		StatHolder.alchemyToggle = true

@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.text = "Level: " + str(StatHolder.alchemy) + "| Cost: $" + Big.new(StatHolder.alchemy ** 5 + 250).toAA()    # Set Skill
+	self.text = "Level: " + str(StatHolder.luck) + "| Cost: $" + Big.new(StatHolder.luck ** 10 + 1000).toAA()    # Set Skill

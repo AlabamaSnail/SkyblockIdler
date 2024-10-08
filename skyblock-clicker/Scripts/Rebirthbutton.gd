@@ -10,7 +10,7 @@ func _ready() -> void:
 # Function to calculate rebirth points based on skill levels and money
 func calculate_rebirth_points() -> int:
 	var total_skill_level = 0
-	var skill_levels = [StatHolder.foraging, StatHolder.mining, StatHolder.farming, StatHolder.fishing]
+	var skill_levels = [StatHolder.foraging, StatHolder.mining, StatHolder.farming, StatHolder.fishing, StatHolder.enchanting, StatHolder.alchemy, StatHolder.luck]
 	
 	for skill_level in skill_levels:
 		total_skill_level += pow(skill_level, 1.5)  # Scaling factor for levels
@@ -53,6 +53,18 @@ func _on_pressed() -> void:
 		StatHolder.farmingSkillUpgrade = 0
 		StatHolder.fishingSkillUpgrade = 0
 		StatHolder.miningSkillUpgrade = 0
+		StatHolder.alchemy = 0
+		StatHolder.alchemyProgress = 0
+		StatHolder.alchemySkillUpgrade = 0
+		StatHolder.alchemyToggle = false
+		StatHolder.luck = 0
+		StatHolder.luckProgress = 0
+		StatHolder.luckSkillUpgrade = 0
+		StatHolder.luckToggle = false
+		StatHolder.enchanting = 0
+		StatHolder.enchantingProgress = 0
+		StatHolder.enchantingSkillUpgrade = 0
+		StatHolder.enchantingToggle = false
 		
 		# Reset upgrades and money
 		StatHolder.money = Big.new(0)

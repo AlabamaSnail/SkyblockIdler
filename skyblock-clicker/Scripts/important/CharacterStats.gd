@@ -93,6 +93,11 @@ var alchemyProgress = 0
 var alchemyRebirthUpgrade = 0
 var alchemySkillUpgrade = 0
 var alchemyToggle = false
+
+var luckProgress = 0
+var luckRebirthUpgrade = 0
+var luckSkillUpgrade = 0
+var luckToggle = false
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -176,6 +181,10 @@ func save_datapt2() -> void:
 			"alchemyRebirthUpgrade" : alchemyRebirthUpgrade,
 			"alchemySkillUpgrade" : alchemySkillUpgrade,
 			"alchemyToggle" : alchemyToggle,
+			"luckProgress": alchemyProgress,
+			"luckRebirthUpgrade" : luckRebirthUpgrade,
+			"luckSkillUpgrade" : luckSkillUpgrade,
+			"luckToggle" : luckToggle,
 		}
 
 	# Ensure save is completed before exiting
@@ -256,6 +265,10 @@ func load_datapt2() -> void:
 		alchemySkillUpgrade = data.get("alchemySkillUpgrade", 0)
 		alchemyToggle = data.get("alchemyToggle", false)
 		
+		luckProgress = data.get("luckProgress", 0)
+		luckRebirthUpgrade = data.get("luckRebirthUpgrade", 0)
+		luckSkillUpgrade = data.get("luckSkillUpgrade", 0)
+		luckToggle = data.get("luckToggle", false)
 		
 
 		print("Player data loaded successfully.")
