@@ -53,3 +53,7 @@ func _on_LinkButton_pressed() -> void:
 func _on_back_button_pressed():
 	print("Back button pressed")
 	get_tree().change_scene_to_file("res://loginScene.tscn")
+
+
+func _on_remember_me_check_box_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.

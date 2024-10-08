@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=99 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/important/CharacterStats.gd" id="3_yepde"]
@@ -123,12 +123,13 @@ outline_size = 2
 outline_color = Color(0.694118, 0, 0.972549, 1)
 
 [sub_resource type="Gradient" id="Gradient_pal87"]
-colors = PackedColorArray(0.313213, 0.522068, 1, 1, 0.252028, 0.252028, 0.252028, 1)
+offsets = PackedFloat32Array(0, 0.525974, 0.980519)
+colors = PackedColorArray(0.313213, 0.522068, 1, 1, 0.326425, 0.532408, 1, 1, 0.29219, 0.29219, 0.29219, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1dqpx"]
 gradient = SubResource("Gradient_pal87")
-fill_from = Vector2(0.366972, 0)
-fill_to = Vector2(0.426605, 0.981651)
+fill_from = Vector2(0.518349, 1)
+fill_to = Vector2(0.527523, 0)
 
 [sub_resource type="Gradient" id="Gradient_yi08a"]
 colors = PackedColorArray(0, 0.701049, 0, 1, 0.424125, 0.578395, 0.395043, 1)
@@ -175,6 +176,48 @@ font_size = 36
 font_color = Color(0.0784314, 0.576471, 1, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_06kik"]
+colors = PackedColorArray(0.409777, 0.246364, 0.0182965, 1, 0.558892, 0.379393, 0.0776708, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_taihd"]
+gradient = SubResource("Gradient_06kik")
+fill_from = Vector2(0.472477, 0.165138)
+fill_to = Vector2(0.426605, 0.981651)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pskm4"]
+line_spacing = 0.0
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 12
+outline_color = Color(0.84861, 0.5468, 0.0617335, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_64v5y"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_q574u"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdtbd"]
+bg_color = Color(0.944723, 0.605295, 0.154694, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0l2q"]
+bg_color = Color(0.582152, 0.354873, 0.140219, 1)
+
+[sub_resource type="Theme" id="Theme_8vu7r"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_cdtbd")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_w0l2q")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yhnr"]
+bg_color = Color(0.331244, 0.181508, 0.0179031, 1)
+
+[sub_resource type="Theme" id="Theme_fqlux"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_5yhnr")
 
 [node name="Scene" type="Node2D"]
 
@@ -226,8 +269,8 @@ script = ExtResource("14_4hf3v")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StatLabels"]
 z_index = -1
-position = Vector2(1867.56, 540.659)
-scale = Vector2(-105.663, 1083.2)
+position = Vector2(1856.25, 540.659)
+scale = Vector2(-128.283, 1083.2)
 mesh = SubResource("QuadMesh_u2tjg")
 texture = SubResource("GradientTexture2D_ej64g")
 
@@ -749,14 +792,14 @@ text = "CLICK ALL"
 [node name="MoneyLabel2" type="Node2D" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="MoneyLabel2"]
-position = Vector2(1054.38, 40)
-scale = Vector2(1520.75, 81.5)
+position = Vector2(1043, 40)
+scale = Vector2(1498, 81.5)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture1D_hsw25")
 
 [node name="MoneyLabel" type="Label" parent="MoneyLabel2"]
 offset_left = 294.0
-offset_right = 1815.0
+offset_right = 1792.0
 offset_bottom = 81.0
 text = "Money: 0"
 label_settings = SubResource("LabelSettings_8yhlx")
@@ -932,8 +975,8 @@ text = "Lvl. 0 Fishing Skill x2 : $100"
 script = ExtResource("36_q5krr")
 
 [node name="CombatBackground" type="MeshInstance2D" parent="."]
-position = Vector2(1264, 580.5)
-scale = Vector2(1102, 999)
+position = Vector2(1252.5, 838.5)
+scale = Vector2(1079, 483)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_1dqpx")
 
@@ -1138,6 +1181,255 @@ text = "Super"
 label_settings = SubResource("LabelSettings_qb2gb")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Crafting" type="Node2D" parent="."]
+
+[node name="CraftingBackground" type="MeshInstance2D" parent="Crafting"]
+position = Vector2(1252, 339)
+scale = Vector2(1080, 516)
+mesh = SubResource("QuadMesh_bdxdn")
+texture = SubResource("GradientTexture2D_taihd")
+
+[node name="CraftingLabel" type="Label" parent="Crafting"]
+offset_left = 715.0
+offset_top = 81.0
+offset_right = 1815.0
+offset_bottom = 144.0
+text = "Crafting"
+label_settings = SubResource("LabelSettings_pskm4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CarpentrySkill" type="Node2D" parent="Crafting"]
+position = Vector2(770, 273)
+
+[node name="CarpentryPanel" type="Panel" parent="Crafting/CarpentrySkill"]
+offset_left = -2.0
+offset_top = -81.0
+offset_right = 254.0
+offset_bottom = 239.0
+
+[node name="CarpentryLabel" type="Label" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_right = 256.0
+offset_bottom = 47.0
+text = "Carpentry"
+label_settings = SubResource("LabelSettings_64v5y")
+horizontal_alignment = 1
+
+[node name="CarpentryLevelLabel" type="Label" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_top = 47.0
+offset_right = 256.0
+offset_bottom = 81.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_q574u")
+horizontal_alignment = 1
+
+[node name="CarpentryProgressBar" type="ProgressBar" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 80.0
+offset_right = 208.0
+offset_bottom = 104.0
+theme = SubResource("Theme_8vu7r")
+value = 25.0
+
+[node name="5WoodButton" type="Button" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 144.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "1 Cost: 5 Wood"
+
+[node name="10WoodButton" type="Button" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 208.0
+offset_bottom = 184.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "10 Cost: 50 Wood"
+
+[node name="25WoodButton" type="Button" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 192.0
+offset_right = 208.0
+offset_bottom = 224.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "25 Cost: 125 Wood"
+
+[node name="50WoodButton" type="Button" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 232.0
+offset_right = 208.0
+offset_bottom = 264.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "50 Cost: 250 Wood"
+
+[node name="100WoodButton" type="Button" parent="Crafting/CarpentrySkill/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 272.0
+offset_right = 208.0
+offset_bottom = 304.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "100 Cost: 500 Wood"
+
+[node name="CarpentrySkill2" type="Node2D" parent="Crafting"]
+position = Vector2(1088, 273)
+
+[node name="CarpentryPanel" type="Panel" parent="Crafting/CarpentrySkill2"]
+offset_left = 32.0
+offset_top = -81.0
+offset_right = 288.0
+offset_bottom = 239.0
+
+[node name="CarpentryLabel" type="Label" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_right = 256.0
+offset_bottom = 47.0
+text = "Carpentry"
+label_settings = SubResource("LabelSettings_64v5y")
+horizontal_alignment = 1
+
+[node name="CarpentryLevelLabel" type="Label" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_top = 47.0
+offset_right = 256.0
+offset_bottom = 81.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_q574u")
+horizontal_alignment = 1
+
+[node name="CarpentryProgressBar" type="ProgressBar" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 80.0
+offset_right = 208.0
+offset_bottom = 104.0
+theme = SubResource("Theme_8vu7r")
+value = 25.0
+
+[node name="5WoodButton" type="Button" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 144.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "1 Cost: 5 Wood"
+
+[node name="10WoodButton" type="Button" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 208.0
+offset_bottom = 184.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "10 Cost: 50 Wood"
+
+[node name="25WoodButton" type="Button" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 192.0
+offset_right = 208.0
+offset_bottom = 224.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "25 Cost: 125 Wood"
+
+[node name="50WoodButton" type="Button" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 232.0
+offset_right = 208.0
+offset_bottom = 264.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "50 Cost: 250 Wood"
+
+[node name="100WoodButton" type="Button" parent="Crafting/CarpentrySkill2/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 272.0
+offset_right = 208.0
+offset_bottom = 304.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "100 Cost: 500 Wood"
+
+[node name="CarpentrySkill3" type="Node2D" parent="Crafting"]
+position = Vector2(1088, 273)
+
+[node name="CarpentryPanel" type="Panel" parent="Crafting/CarpentrySkill3"]
+offset_left = 384.0
+offset_top = -81.0
+offset_right = 640.0
+offset_bottom = 239.0
+
+[node name="CarpentryLabel" type="Label" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_right = 256.0
+offset_bottom = 47.0
+text = "Carpentry"
+label_settings = SubResource("LabelSettings_64v5y")
+horizontal_alignment = 1
+
+[node name="CarpentryLevelLabel" type="Label" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_top = 47.0
+offset_right = 256.0
+offset_bottom = 81.0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_q574u")
+horizontal_alignment = 1
+
+[node name="CarpentryProgressBar" type="ProgressBar" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 80.0
+offset_right = 208.0
+offset_bottom = 104.0
+theme = SubResource("Theme_8vu7r")
+value = 25.0
+
+[node name="5WoodButton" type="Button" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 208.0
+offset_bottom = 144.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "1 Cost: 5 Wood"
+
+[node name="10WoodButton" type="Button" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 208.0
+offset_bottom = 184.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "10 Cost: 50 Wood"
+
+[node name="25WoodButton" type="Button" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 192.0
+offset_right = 208.0
+offset_bottom = 224.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "25 Cost: 125 Wood"
+
+[node name="50WoodButton" type="Button" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 232.0
+offset_right = 208.0
+offset_bottom = 264.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "50 Cost: 250 Wood"
+
+[node name="100WoodButton" type="Button" parent="Crafting/CarpentrySkill3/CarpentryPanel"]
+offset_left = 48.0
+offset_top = 272.0
+offset_right = 208.0
+offset_bottom = 304.0
+theme = SubResource("Theme_fqlux")
+theme_override_font_sizes/font_size = 16
+text = "100 Cost: 500 Wood"
 
 [node name="DevMenu" type="Node2D" parent="."]
 

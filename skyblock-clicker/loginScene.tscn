@@ -1,24 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4nol7b7uqq4k"]
+[gd_scene load_steps=6 format=3 uid="uid://c4nol7b7uqq4k"]
 
 [ext_resource type="Script" path="res://login.gd" id="1_2mqkj"]
 [ext_resource type="Script" path="res://register.gd" id="2_3hxeh"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_ssd20"]
+
+[sub_resource type="Gradient" id="Gradient_w5m1l"]
+offsets = PackedFloat32Array(0.012987, 1)
+colors = PackedColorArray(0.262932, 0.262932, 0.262932, 1, 0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lqaxx"]
+gradient = SubResource("Gradient_w5m1l")
+fill_from = Vector2(0.495413, 0)
+fill_to = Vector2(0.504587, 1)
+
 [node name="LoginScene" type="Node2D"]
 
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+z_index = -1
+position = Vector2(959.25, 539.75)
+scale = Vector2(1919.5, 1080.5)
+mesh = SubResource("QuadMesh_ssd20")
+texture = SubResource("GradientTexture2D_lqaxx")
+
 [node name="Login" type="Button" parent="."]
-offset_right = 1919.0
-offset_bottom = 294.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1856.0
+offset_bottom = 320.0
 theme_override_font_sizes/font_size = 69
-text = "Login"
+text = "Click here to Login."
 script = ExtResource("1_2mqkj")
 
 [node name="Register" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 786.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = 64.0
+offset_top = 704.0
+offset_right = 1856.0
+offset_bottom = 1024.0
 theme_override_font_sizes/font_size = 69
-text = "Register"
+text = "Click here to register an account."
 script = ExtResource("2_3hxeh")
 
 [connection signal="pressed" from="Login" to="Login" method="_on_pressed"]

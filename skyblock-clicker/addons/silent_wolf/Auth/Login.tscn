@@ -121,4 +121,5 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="FormContainer/LinkButton" to="." method="_on_LinkButton_pressed"]
+[connection signal="toggled" from="FormContainer/RememberMeCheckBox" to="." method="_on_remember_me_check_box_toggled"]
 [connection signal="pressed" from="FormContainer/LoginButton" to="." method="_on_LoginButton_pressed"]
