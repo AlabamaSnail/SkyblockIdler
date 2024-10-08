@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=85 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/important/CharacterStats.gd" id="3_yepde"]
@@ -23,10 +23,12 @@
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTforaging.gd" id="17_vryef"]
 [ext_resource type="Script" path="res://Scripts/auto_leveler.gd" id="18_6g32d"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTmining.gd" id="18_bl753"]
+[ext_resource type="Script" path="res://enchanting_progress_bar.gd" id="19_hwwjh"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfarming.gd" id="19_lcnbv"]
 [ext_resource type="Script" path="res://Scripts/m_farming_progress_bar.gd" id="20_c01db"]
 [ext_resource type="Script" path="res://Scripts/UpgradeScripts/UTfishing.gd" id="20_f2y76"]
 [ext_resource type="Script" path="res://Scripts/m_fishing_progress_bar.gd" id="21_iqkso"]
+[ext_resource type="Script" path="res://enchanting_level_label.gd" id="21_qksib"]
 [ext_resource type="Script" path="res://Scripts/tab_bar.gd" id="23_potsj"]
 [ext_resource type="Script" path="res://Scripts/buy_all.gd" id="25_7dllf"]
 [ext_resource type="Script" path="res://Scripts/Rebirthbutton.gd" id="28_8k2ct"]
@@ -83,6 +85,12 @@ gradient = SubResource("Gradient_2ou42")
 line_spacing = 0.0
 font_size = 36
 font_color = Color(0, 0, 0.498039, 1)
+outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_vowtu"]
+line_spacing = 0.0
+font_size = 36
+font_color = Color(1, 0, 0.0509804, 1)
 outline_size = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_q0qhh"]
@@ -232,10 +240,9 @@ rotation = -1.5708
 scale = Vector2(0.00339441, 0.000925638)
 
 [node name="Label" type="Label" parent="Clickers/SkillBars"]
-offset_left = 11.0
-offset_top = -49.9999
-offset_right = 271.0
-offset_bottom = 13.0001
+offset_top = -50.0
+offset_right = 293.0
+offset_bottom = 13.0
 text = "Skills"
 label_settings = SubResource("LabelSettings_tpea0")
 horizontal_alignment = 1
@@ -396,16 +403,66 @@ scale = Vector2(0.75, 0.75)
 text = "Auto Level"
 script = ExtResource("18_6g32d")
 
+[node name="PriceSkillBars" type="Node2D" parent="Clickers"]
+position = Vector2(0.0990027, 0.499381)
+rotation = -1.5708
+scale = Vector2(0.00339441, 0.000925638)
+
+[node name="Label" type="Label" parent="Clickers/PriceSkillBars"]
+offset_top = -50.0
+offset_right = 295.0
+offset_bottom = 13.0
+text = "Money Skills"
+label_settings = SubResource("LabelSettings_vowtu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enchanting" type="Node2D" parent="Clickers/PriceSkillBars"]
+
+[node name="EnchantingProgressBar" type="ProgressBar" parent="Clickers/PriceSkillBars/Enchanting"]
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 52.0
+script = ExtResource("19_hwwjh")
+
+[node name="EnchantingLabel" type="Label" parent="Clickers/PriceSkillBars/Enchanting"]
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 114.0
+offset_bottom = 21.0
+text = "Enchanting
+"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+
+[node name="EnchantingLevelLabel" type="Label" parent="Clickers/PriceSkillBars/Enchanting"]
+offset_left = 118.0
+offset_top = 2.00101
+offset_right = 257.0
+offset_bottom = 22.001
+text = "Level: 0 | Cost: $ 1k"
+label_settings = SubResource("LabelSettings_lh5sc")
+horizontal_alignment = 1
+script = ExtResource("21_qksib")
+
+[node name="EnchantingButton" type="Button" parent="Clickers/PriceSkillBars/Enchanting"]
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 115.0
+offset_bottom = 57.0
+text = "CLICK ME"
+
 [node name="MoneyBars" type="Node2D" parent="Clickers"]
 position = Vector2(-0.194424, 0.499382)
 rotation = -1.5708
 scale = Vector2(0.00339441, 0.000925638)
 
 [node name="Label" type="Label" parent="Clickers/MoneyBars"]
-offset_left = 11.0
-offset_top = -54.0001
-offset_right = 271.0
-offset_bottom = 8.99994
+offset_left = 1.0
+offset_top = -54.0
+offset_right = 295.0
+offset_bottom = 9.0
 text = "Money"
 label_settings = SubResource("LabelSettings_q0qhh")
 horizontal_alignment = 1
@@ -1062,6 +1119,7 @@ script = ExtResource("57_bgpt6")
 [connection signal="toggled" from="Clickers/SkillBars/FishingBar/FishingCheckButton3" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_check_button_3_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/MiningBar/MiningCheckButton" to="Clickers/SkillBars/MiningBar/MiningProgressBar" method="_on_mining_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/AutoLeveler" to="Clickers/SkillBars/AutoLeveler" method="_on_toggled"]
+[connection signal="pressed" from="Clickers/PriceSkillBars/Enchanting/EnchantingButton" to="Clickers/PriceSkillBars/Enchanting/EnchantingProgressBar" method="_on_enchanting_button_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MForagingButton" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksUp" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_m_foraging_button_2_pressed"]
 [connection signal="pressed" from="Clickers/MoneyBars/ForagingBar/MFStacksDown" to="Clickers/MoneyBars/ForagingBar/MForagingProgressBar" method="_on_mf_stacks_down_pressed"]

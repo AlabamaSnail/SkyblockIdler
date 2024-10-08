@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Skyblock Clicker"
-run/main_scene="res://scene.tscn"
+run/main_scene="res://loginScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -31,3 +31,7 @@ window/size/borderless=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

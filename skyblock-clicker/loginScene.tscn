@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4nol7b7uqq4k"]
+
+[ext_resource type="Script" path="res://login.gd" id="1_2mqkj"]
+[ext_resource type="Script" path="res://register.gd" id="2_3hxeh"]
+
+[node name="LoginScene" type="Node2D"]
+
+[node name="Login" type="Button" parent="."]
+offset_right = 1919.0
+offset_bottom = 294.0
+theme_override_font_sizes/font_size = 69
+text = "Login"
+script = ExtResource("1_2mqkj")
+
+[node name="Register" type="Button" parent="."]
+offset_left = 1.0
+offset_top = 786.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 69
+text = "Register"
+script = ExtResource("2_3hxeh")
+
+[connection signal="pressed" from="Login" to="Login" method="_on_pressed"]
+[connection signal="pressed" from="Register" to="Register" method="_on_pressed"]

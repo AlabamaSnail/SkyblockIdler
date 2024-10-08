@@ -52,7 +52,7 @@ func _on_pressed() -> void:
 		StatHolder.fishingSkillUpgrade = 0
 		StatHolder.miningSkillUpgrade = 0
 		# Reset upgrades and money
-		StatHolder.money = 0
+		StatHolder.money = Big.new(0)
 		
 		
 		StatHolder.rebirthPoints = 0

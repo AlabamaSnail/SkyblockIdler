@@ -24,9 +24,10 @@ func _on_login_complete(sw_result: Dictionary) -> void:
 
 
 func login_success() -> void:
-	var scene_name = SilentWolf.auth_config.redirect_to_scene
+	var scene_name = "res://scene.tscn"
 	SWLogger.info("logged in as: " + str(SilentWolf.Auth.logged_in_player))
 	get_tree().change_scene_to_file(scene_name)
+	StatHolder.load_datapt2()
 
 
 func login_failure(error: String) -> void:
@@ -51,4 +52,4 @@ func _on_LinkButton_pressed() -> void:
 
 func _on_back_button_pressed():
 	print("Back button pressed")
-	get_tree().change_scene_to_file(SilentWolf.auth_config.redirect_to_scene)
+	get_tree().change_scene_to_file("res://loginScene.tscn")

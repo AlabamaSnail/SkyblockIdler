@@ -53,7 +53,7 @@ func registration_success() -> void:
 
 
 func registration_user_pwd_success() -> void:
-	var scene_name = SilentWolf.auth_config.redirect_to_scene
+	var scene_name = "res://addons/silent_wolf/Auth/Login.tscn"
 	get_tree().change_scene_to_file(scene_name)
 
 
@@ -64,7 +64,7 @@ func registration_failure(error: String) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	get_tree().change_scene_to_file(SilentWolf.auth_config.redirect_to_scene)
+	get_tree().change_scene_to_file("res://loginScene.tscn")
 
 
 func show_processing_label() -> void:

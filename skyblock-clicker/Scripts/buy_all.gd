@@ -95,14 +95,14 @@ func get_temp_lowest_tool_level(farming, fishing, foraging, mining) -> String:
 
 	return lowest_tool
 
-func calculate_tool_upgrade_cost(tool_name: String, farming, fishing, foraging, mining) -> int:
+func calculate_tool_upgrade_cost(tool_name: String, farming, fishing, foraging, mining) -> Big:
 	match tool_name:
 		"farming":
-			return farming ** 3 + 20
+			return Big.new(farming ** 3 + 20)
 		"fishing":
-			return fishing ** 3 + 20
+			return Big.new(fishing ** 3 + 20)
 		"foraging":
-			return foraging ** 3 + 20
+			return Big.new(foraging ** 3 + 20)
 		"mining":
-			return mining ** 3 + 20
-	return 0
+			return Big.new(mining ** 3 + 20)
+	return Big.new(0)

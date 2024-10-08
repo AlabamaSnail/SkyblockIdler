@@ -1,6 +1,6 @@
 extends Label
 
-var Money = Big.new(0)
+var Money = Big.new(0, 0)
 func _ready():
 	pass
 
