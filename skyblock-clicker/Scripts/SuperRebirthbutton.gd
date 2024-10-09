@@ -62,6 +62,7 @@ func _on_pressed() -> void:
 		StatHolder.foragingRebirthUpgrade = 0
 		StatHolder.farmingRebirthUpgrade = 0
 		StatHolder.fishingRebirthUpgrade = 0
+		StatHolder.craftingUnlocked = true
 		maxRebirthPoints = 0
 
 		# Update the button text to show new rebirth points

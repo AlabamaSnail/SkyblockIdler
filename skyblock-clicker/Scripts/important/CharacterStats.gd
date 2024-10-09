@@ -98,6 +98,9 @@ var luckProgress = 0
 var luckRebirthUpgrade = 0
 var luckSkillUpgrade = 0
 var luckToggle = false
+
+
+var craftingUnlocked = false
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -185,6 +188,7 @@ func save_datapt2() -> void:
 			"luckRebirthUpgrade" : luckRebirthUpgrade,
 			"luckSkillUpgrade" : luckSkillUpgrade,
 			"luckToggle" : luckToggle,
+			"craftingUnlocked" : craftingUnlocked,
 		}
 
 	# Ensure save is completed before exiting
@@ -270,6 +274,7 @@ func load_datapt2() -> void:
 		luckSkillUpgrade = data.get("luckSkillUpgrade", 0)
 		luckToggle = data.get("luckToggle", false)
 		
+		craftingUnlocked = data.get("craftingUnlocked", false)
 
 		print("Player data loaded successfully.")
 	else:
