@@ -23,19 +23,18 @@ func _process(delta):
 	_update_stacks_label()
 	if StatHolder.MoneyfishingToggle:
 		# Update skill speed dynamically based on current foraging and tool stats
-		var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
 
 		# Calculate effective speed based on stacks, which are only changed via the second button
 		
 		# Increase the progress based on effective speed
-		StatHolder.MoneyfishingProgress += (skill_speed / StatHolder.MoneyfishingStacks) * delta
+		StatHolder.MoneyfishingProgress += (StatHolder.fishingMoneySpeed / StatHolder.MoneyfishingStacks) * delta
 
 		# Clamp the progress to a maximum of 100
 		if StatHolder.MoneyfishingProgress > 100:
 			StatHolder.MoneyfishingProgress = 100
 			StatHolder.MoneyfishingToggle = false  # Stop filling when it reaches 100
 			StatHolder.MoneyfishingProgress = 0
-			StatHolder.money.plusEquals(StatHolder.MoneyfishingStacks * pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0)))  # Add to money based on stacks
+			StatHolder.money.plusEquals(StatHolder.fishingMoneyMulti)  # Add to money based on stacks
 
 		# Set the progress bar value
 		self.value = StatHolder.MoneyfishingProgress
@@ -44,22 +43,20 @@ func _process(delta):
 func _on_m_fish_stacks_up_pressed() -> void:
 	if not StatHolder.MoneyfishingToggle:
 		# Recalculate the current skill speed at the moment the button is pressed
-		var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
 		
 		# Check if skill speed is greater than 100 and apply stack doubling logic
 		StatHolder.MoneyfishingStacks *= 2  # Double the stacks value
-		skill_speed -= 100  # Permanently subtract 100 from skill_speed
+		StatHolder.fishingMoneySpeed -= 100  # Permanently subtract 100 from skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 
 # Called when the mf_stacks_down button is pressed (halves stacks and adds 100 to skill_speed)
 func _on_m_fish_stacks_down_pressed() -> void:
 	# Recalculate the current skill speed at the moment the button is pressed
-	var skill_speed = ((StatHolder.fishing * 2.5) * StatHolder.fishingTool) * (1 + (StatHolder.strength * 0.025))
 
 	# Ensure stacks don't go below 1, and increase skill_speed if applicable
 	if StatHolder.MoneyfishingStacks > 1:
 		StatHolder.MoneyfishingStacks /= 2  # Halve the stacks value
-		skill_speed += 100  # Add 100 back to skill_speed
+		StatHolder.fishingMoneySpeed += 100  # Add 100 back to skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 
 

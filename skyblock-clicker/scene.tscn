@@ -1,11 +1,14 @@
-[gd_scene load_steps=102 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=109 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://foraging_multi.gd" id="2_guh8q"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
+[ext_resource type="Script" path="res://mining_multi.gd" id="3_tp5qe"]
 [ext_resource type="Script" path="res://Scripts/important/CharacterStats.gd" id="3_yepde"]
+[ext_resource type="Script" path="res://farming_multi.gd" id="4_bvoak"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_level_label.gd" id="4_erlrf"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/farming_progress_bar.gd" id="5_0qglc"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/mining_progress_bar.gd" id="5_xunse"]
+[ext_resource type="Script" path="res://fishing_multi.gd" id="5_ya671"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/mining_level_label.gd" id="6_cgema"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/farming_level_label.gd" id="6_w5ftk"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/fishing_progress_bar.gd" id="7_tdak0"]
@@ -44,6 +47,7 @@
 [ext_resource type="Script" path="res://Scripts/farming_rebirth_upgrade_2.gd" id="31_vkeyj"]
 [ext_resource type="Script" path="res://Scripts/fishing_rebirth_upgrade_3.gd" id="32_aot1f"]
 [ext_resource type="Script" path="res://Scripts/mining_rebirth_upgrade_4.gd" id="33_1sq8s"]
+[ext_resource type="Script" path="res://clickall.gd" id="33_k2h3w"]
 [ext_resource type="Script" path="res://Scripts/foraging_skill_upgrade.gd" id="34_op7u1"]
 [ext_resource type="Script" path="res://Scripts/farming_skill_upgrade.gd" id="35_ej4y3"]
 [ext_resource type="Script" path="res://Scripts/fishing_skill_upgrade_6.gd" id="36_q5krr"]
@@ -57,6 +61,7 @@
 [ext_resource type="Script" path="res://Scripts/8x_skills.gd" id="47_5uaqu"]
 [ext_resource type="Script" path="res://Scripts/SuperRebirthbutton.gd" id="48_40vx5"]
 [ext_resource type="Script" path="res://Scripts/super_rebirth_points_label.gd" id="49_tnbam"]
+[ext_resource type="Script" path="res://rebirth.gd" id="50_tgiwy"]
 [ext_resource type="Script" path="res://Scripts/dev_menu_button.gd" id="51_3guhp"]
 [ext_resource type="Script" path="res://Scripts/give_money_1k.gd" id="52_0crbe"]
 [ext_resource type="Script" path="res://Scripts/give_money_1m.gd" id="53_otois"]
@@ -65,6 +70,7 @@
 [ext_resource type="Script" path="res://Scripts/give_rebirth_100.gd" id="56_thu4q"]
 [ext_resource type="Script" path="res://craftingMenuUnlocked.gd" id="57_3a65k"]
 [ext_resource type="Script" path="res://Scripts/give_rebirth_1k.gd" id="57_bgpt6"]
+[ext_resource type="Script" path="res://click_all_money.gd" id="59_jmdrw"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_bdxdn"]
 
@@ -75,6 +81,10 @@ colors = PackedColorArray(0, 0.701049, 0, 1, 0.424125, 0.578395, 0.395043, 1)
 gradient = SubResource("Gradient_yi08a")
 fill_from = Vector2(0.642202, 0.137615)
 fill_to = Vector2(0.766055, 0.908257)
+
+[sub_resource type="LabelSettings" id="LabelSettings_603ww"]
+font_size = 45
+font_color = Color(0.255659, 0.255659, 0.255659, 1)
 
 [sub_resource type="Gradient" id="Gradient_pal87"]
 offsets = PackedFloat32Array(0, 0.525974, 0.980519)
@@ -231,14 +241,27 @@ Button/styles/normal = SubResource("StyleBoxFlat_5yhnr")
 [node name="BackgroundHolder" type="Node2D" parent="."]
 
 [node name="RebirthBackground" type="MeshInstance2D" parent="BackgroundHolder"]
-position = Vector2(504, 838.5)
-scale = Vector2(418, 483)
+position = Vector2(503.5, 838.5)
+scale = Vector2(417, 483)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_nkh2n")
 
+[node name="RebirthNotUnlocked" type="Label" parent="BackgroundHolder"]
+visible = false
+offset_left = 295.0
+offset_top = 599.0
+offset_right = 713.0
+offset_bottom = 1080.0
+text = "Rebirthing
+Unlocks at level 15 Base Skills"
+label_settings = SubResource("LabelSettings_603ww")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="CombatBackground" type="MeshInstance2D" parent="BackgroundHolder"]
-position = Vector2(1252.5, 838.5)
-scale = Vector2(1079, 483)
+position = Vector2(1252, 838.5)
+scale = Vector2(1080, 483)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_1dqpx")
 
@@ -277,10 +300,13 @@ script = ExtResource("3_yepde")
 script = ExtResource("2_guh8q")
 
 [node name="miningMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+script = ExtResource("3_tp5qe")
 
 [node name="farmingMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+script = ExtResource("4_bvoak")
 
 [node name="fishingMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+script = ExtResource("5_ya671")
 
 [node name="StatLabels" type="Node2D" parent="."]
 
@@ -839,6 +865,7 @@ offset_top = 232.0
 offset_right = 291.0
 offset_bottom = 268.0
 text = "CLICK ALL"
+script = ExtResource("33_k2h3w")
 
 [node name="MoneyLabel2" type="Node2D" parent="."]
 
@@ -1026,6 +1053,7 @@ text = "Lvl. 0 Fishing Skill x2 : $100"
 script = ExtResource("36_q5krr")
 
 [node name="Rebirth" type="Node2D" parent="."]
+script = ExtResource("50_tgiwy")
 
 [node name="RebirthLabel" type="Label" parent="Rebirth"]
 offset_left = 295.0
@@ -1039,19 +1067,19 @@ vertical_alignment = 1
 script = ExtResource("29_3rxki")
 
 [node name="RebirthTabBar" type="TabBar" parent="Rebirth"]
-offset_left = 295.0
+offset_left = 294.0
 offset_top = 597.0
-offset_right = 713.0
+offset_right = 710.0
 offset_bottom = 635.0
 scale = Vector2(1.004, 1.004)
 theme = SubResource("Theme_tdyh0")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 21
 current_tab = 0
+tab_alignment = 1
 tab_count = 3
 tab_0/title = "Rebirths"
 tab_1/title = "Super Rebirth"
-tab_1/tooltip = "Mega Rebirth"
 tab_2/title = "Ultra Rebirth"
 script = ExtResource("39_rj1ww")
 
@@ -1087,10 +1115,10 @@ vertical_alignment = 1
 script = ExtResource("30_xu33u")
 
 [node name="MoneyRebirths" type="GridContainer" parent="Rebirth/RebirthTabBar/NormalRebirths"]
-offset_left = 8.96413
-offset_top = 138.446
-offset_right = 406.964
-offset_bottom = 239.446
+offset_left = 9.0
+offset_top = 138.0
+offset_right = 416.0
+offset_bottom = 274.0
 theme_override_constants/h_separation = 50
 columns = 2
 
@@ -1123,6 +1151,11 @@ script = ExtResource("46_5mikl")
 layout_mode = 2
 text = "8x Skills | 250 Points"
 script = ExtResource("47_5uaqu")
+
+[node name="ClickAllMoney" type="Button" parent="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths"]
+layout_mode = 2
+text = "Click All | 500 Points "
+script = ExtResource("59_jmdrw")
 
 [node name="SuperRebirths" type="Node2D" parent="Rebirth/RebirthTabBar"]
 visible = false
@@ -1222,7 +1255,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crafting" type="Node2D" parent="."]
-visible = false
 script = ExtResource("57_3a65k")
 
 [node name="CraftingLabel" type="Label" parent="Crafting"]
@@ -1591,6 +1623,7 @@ script = ExtResource("57_bgpt6")
 [connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/4xSkills" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xMoney2" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xMoney2" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/8xSkills" method="_on_pressed"]
+[connection signal="pressed" from="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/ClickAllMoney" to="Rebirth/RebirthTabBar/NormalRebirths/MoneyRebirths/ClickAllMoney" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/SuperRebirths/Button" to="Rebirth/RebirthTabBar/SuperRebirths/Button" method="_on_pressed"]
 [connection signal="pressed" from="Rebirth/RebirthTabBar/UltraRebirths/Button" to="Rebirth/RebirthTabBar/UltraRebirths/Button" method="_on_pressed"]
 [connection signal="pressed" from="DevMenu/DevMenuButton" to="DevMenu/DevMenuButton" method="_on_pressed"]

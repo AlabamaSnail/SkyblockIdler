@@ -26,7 +26,7 @@ func _on_pressed() -> void:
 		# Calculate rebirth points
 
 		# Reset all skills, progress, and upgrades
-		StatHolder.rebirthPoints += calculate_rebirth_points()
+		StatHolder.rebirthPoints = 0
 		StatHolder.foraging = 0
 		StatHolder.mining = 0
 		StatHolder.farming = 0
@@ -53,7 +53,7 @@ func _on_pressed() -> void:
 		StatHolder.miningSkillUpgrade = 0
 		# Reset upgrades and money
 		StatHolder.money = Big.new(0)
-		
+		StatHolder.buyAllButtonRunlock = false
 		
 		StatHolder.rebirthPoints = 0
 		StatHolder.moneyRebirthUpgrade = 0
@@ -63,6 +63,8 @@ func _on_pressed() -> void:
 		StatHolder.farmingRebirthUpgrade = 0
 		StatHolder.fishingRebirthUpgrade = 0
 		StatHolder.craftingUnlocked = true
+		
+		StatHolder.superRebirthPoints += calculate_rebirth_points()
 		maxRebirthPoints = 0
 
 		# Update the button text to show new rebirth points

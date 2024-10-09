@@ -3,20 +3,17 @@ extends ProgressBar
 # The skill speed and current progress
 
 
-var skill_speed = (100 * pow(0.8, StatHolder.mining)) * pow(2.0, (StatHolder.miningRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.miningSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 
 #L: 1 * (L**2 + 1)
 
 
 func _ready() -> void:
 	self.value = StatHolder.miningProgress
-	skill_speed = (100 * pow(0.8, StatHolder.mining)) * pow(2.0, (StatHolder.miningRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.miningSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 func _process(delta):
 	if StatHolder.miningToggle:
 		# Increase the progress based on skill speed
-		skill_speed = (100 * pow(0.8, StatHolder.mining)) * pow(2.0, (StatHolder.miningRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.miningSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 		self.value = StatHolder.miningProgress
-		StatHolder.miningProgress += skill_speed * delta
+		StatHolder.miningProgress += StatHolder.miningSkillMulti * delta
 
 		# Clamp the progress to a maximum of 100
 		if StatHolder.miningProgress > 100:
@@ -24,7 +21,6 @@ func _process(delta):
 			#is_filling = false  # Stop filling when it reaches 100
 			StatHolder.miningProgress = 0
 			StatHolder.mining += 1
-			skill_speed = (100 * pow(0.8, StatHolder.mining)) * pow(2.0, (StatHolder.miningRebirthUpgrade * 1.0)) * pow(2.0, (StatHolder.miningSkillUpgrade * 1.0))* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0))
 			#print(skill_speed)
 
 		# Set the progress bar value

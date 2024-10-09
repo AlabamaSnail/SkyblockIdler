@@ -18,8 +18,12 @@ var runecraftingSkillMulti = 0
 var foragingMoneyMulti = 0
 var foragingMoneySpeed = 0
 var miningMoneyMulti = 0
-var farmingMoneyMuli = 0
+var miningMoneySpeed = 0
+var farmingMoneyMulti = 0
+var farmingMoneySpeed = 0
 var fishingMoneyMulti = 0
+var fishingMoneySpeed = 0
+
 
 # Clicking Skills
 var foraging = 0
@@ -119,7 +123,12 @@ var luckSkillUpgrade = 0
 var luckToggle = false
 
 
+var buyAllButtonRunlock = false
+var buyAllButtonSRunlock = false
+
+
 var craftingUnlocked = false
+var rebirthUnlocked = false
 # Initialize JSON instance
 var json = JSON.new()
 
@@ -208,6 +217,10 @@ func save_datapt2() -> void:
 			"luckSkillUpgrade" : luckSkillUpgrade,
 			"luckToggle" : luckToggle,
 			"craftingUnlocked" : craftingUnlocked,
+			"buyAllButtonRunlock" : buyAllButtonRunlock,
+			"buyAllButtonSRunlock" : buyAllButtonSRunlock,
+			"rebirthUnlocked" : rebirthUnlocked,
+			
 		}
 
 	# Ensure save is completed before exiting
@@ -294,6 +307,9 @@ func load_datapt2() -> void:
 		luckToggle = data.get("luckToggle", false)
 		
 		craftingUnlocked = data.get("craftingUnlocked", false)
+		rebirthUnlocked = data.get("rebirthUnlocked", false)
+		buyAllButtonSRunlock = data.get("buyAllButtonSRunlock", false)
+		buyAllButtonRunlock = data.get("buyAllButtonRunlock", false)
 
 		print("Player data loaded successfully.")
 	else:
