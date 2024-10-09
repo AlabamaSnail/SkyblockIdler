@@ -2,6 +2,25 @@ extends Node2D
 
 
 
+# NOT SAVED VARS #
+
+# Skill
+var foragingSkillMulti = 0
+var miningSkillMulti = 0
+var farmingSkillMuli = 0
+var fishingSkillMulti = 0
+var enchantingSkillMuli = 0
+var alchemySkillMulti = 0
+var carpentrySkillMulti = 0
+var luckSkillMulti = 0
+var runecraftingSkillMulti = 0
+# Money
+var foragingMoneyMulti = 0
+var foragingMoneySpeed = 0
+var miningMoneyMulti = 0
+var farmingMoneyMuli = 0
+var fishingMoneyMulti = 0
+
 # Clicking Skills
 var foraging = 0
 var mining = 0

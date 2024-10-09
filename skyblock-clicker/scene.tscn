@@ -1,5 +1,6 @@
-[gd_scene load_steps=101 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=102 format=3 uid="uid://gvabfncr6aor"]
 
+[ext_resource type="Script" path="res://foraging_multi.gd" id="2_guh8q"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
 [ext_resource type="Script" path="res://Scripts/important/CharacterStats.gd" id="3_yepde"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_level_label.gd" id="4_erlrf"]
@@ -269,6 +270,17 @@ texture = SubResource("GradientTexture2D_ej64g")
 
 [node name="CharacterStatHolder" type="Node2D" parent="."]
 script = ExtResource("3_yepde")
+
+[node name="MultiplierScripts" type="Node2D" parent="CharacterStatHolder"]
+
+[node name="foragingMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+script = ExtResource("2_guh8q")
+
+[node name="miningMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+
+[node name="farmingMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
+
+[node name="fishingMulti" type="Node2D" parent="CharacterStatHolder/MultiplierScripts"]
 
 [node name="StatLabels" type="Node2D" parent="."]
 
