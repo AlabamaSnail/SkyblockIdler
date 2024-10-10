@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=116 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://foraging_multi.gd" id="2_guh8q"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
@@ -68,9 +68,11 @@
 [ext_resource type="Script" path="res://Scripts/give_money_1b.gd" id="54_23ug7"]
 [ext_resource type="Script" path="res://Scripts/give_rebirth_10.gd" id="55_mt6m1"]
 [ext_resource type="Script" path="res://Scripts/give_rebirth_100.gd" id="56_thu4q"]
-[ext_resource type="Script" path="res://craftingMenuUnlocked.gd" id="57_3a65k"]
 [ext_resource type="Script" path="res://Scripts/give_rebirth_1k.gd" id="57_bgpt6"]
 [ext_resource type="Script" path="res://click_all_money.gd" id="59_jmdrw"]
+[ext_resource type="Script" path="res://BigWindowManager.gd" id="71_duxql"]
+[ext_resource type="Script" path="res://exit_button.gd" id="72_twfea"]
+[ext_resource type="Texture2D" uid="uid://bwyva47nlrdpg" path="res://Test.png" id="73_btq0n"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_bdxdn"]
 
@@ -95,6 +97,10 @@ gradient = SubResource("Gradient_pal87")
 fill_from = Vector2(0.518349, 1)
 fill_to = Vector2(0.527523, 0)
 
+[sub_resource type="LabelSettings" id="LabelSettings_xtpl1"]
+font_size = 60
+font_color = Color(0.122252, 0.122252, 0.122252, 1)
+
 [sub_resource type="Gradient" id="Gradient_06kik"]
 colors = PackedColorArray(0.409777, 0.246364, 0.0182965, 1, 0.558892, 0.379393, 0.0776708, 1)
 
@@ -106,6 +112,16 @@ fill_to = Vector2(0.426605, 0.981651)
 [sub_resource type="LabelSettings" id="LabelSettings_cbflx"]
 font_size = 60
 font_color = Color(0.521141, 0.521141, 0.521141, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jdnaq"]
+
+[sub_resource type="Gradient" id="Gradient_dhpby"]
+colors = PackedColorArray(0.259294, 0.259294, 0.259294, 1, 0.654232, 0.654232, 0.654232, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d663c"]
+gradient = SubResource("Gradient_dhpby")
+fill_from = Vector2(0.45, 0)
+fill_to = Vector2(0.545455, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_u2tjg"]
 
@@ -236,6 +252,12 @@ bg_color = Color(0.478602, 0.271663, 0.0385115, 1)
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/normal = SubResource("StyleBoxFlat_5yhnr")
 
+[sub_resource type="LabelSettings" id="LabelSettings_6w3ow"]
+font_size = 64
+font_color = Color(0.978851, 0.128225, 0.493988, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Scene" type="Node2D"]
 
 [node name="BackgroundHolder" type="Node2D" parent="."]
@@ -260,14 +282,28 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="CombatBackground" type="MeshInstance2D" parent="BackgroundHolder"]
-position = Vector2(1252, 838.5)
-scale = Vector2(1080, 483)
+visible = false
+position = Vector2(1252, 580)
+scale = Vector2(1080, 1000)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_1dqpx")
 
+[node name="CombatNotUnlocked" type="Label" parent="BackgroundHolder"]
+visible = false
+offset_left = 712.0
+offset_top = 81.0
+offset_right = 1793.0
+offset_bottom = 1079.0
+text = "Combat
+Unlocked on first Super Rebirth"
+label_settings = SubResource("LabelSettings_xtpl1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CraftingBackground" type="MeshInstance2D" parent="BackgroundHolder"]
-position = Vector2(1252, 339)
-scale = Vector2(1080, 516)
+visible = false
+position = Vector2(1252, 580.5)
+scale = Vector2(1080, 999)
 mesh = SubResource("QuadMesh_bdxdn")
 texture = SubResource("GradientTexture2D_taihd")
 
@@ -276,12 +312,43 @@ visible = false
 offset_left = 712.0
 offset_top = 81.0
 offset_right = 1793.0
-offset_bottom = 597.0
+offset_bottom = 1079.0
 text = "Crafting
 Unlocked on first Super Rebirth"
 label_settings = SubResource("LabelSettings_cbflx")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InfoBackground" type="MeshInstance2D" parent="BackgroundHolder"]
+position = Vector2(1252, 580.5)
+scale = Vector2(1080, 999)
+mesh = SubResource("QuadMesh_jdnaq")
+texture = SubResource("GradientTexture2D_d663c")
+
+[node name="InfoLabels" type="Node2D" parent="BackgroundHolder"]
+
+[node name="Label" type="Label" parent="BackgroundHolder/InfoLabels"]
+offset_left = 713.0
+offset_top = 274.0
+offset_right = 1792.0
+offset_bottom = 809.0
+text = "Welcome to snail's clicker game!
+Begin by selecting a skill on the left to start leveling up.
+Once your skills are at least level one you can start generating money!
+Just click on the \"CLICK ME\" button for the respective skill.
+Clicking on the Up and Down arrows change the amount of money you produce however, the higher they get the longer it takes.
+As skills levelup they increase the speed at which money is generated. 
+Additionally, Skills contribute to your stat points which also boost Money Generating speed as well as other systems you'll discover later in the game.
+Money skills are very similar to normal skills however, they require you to pay to level up. These skills contribute to your skill average, skill stats, and also independently boost gain of future systems.
+In your upgrade tab \"Tool Upgrades\" boost the speed at which money is generated and \"Skill Upgrades\" boost the speed skills progress. 
+Once you hit level 15 in your main 4 skills (Foraging, Farming, Fishing, and Mining) you will be able to do your first rebirth!
+Rebirths reset everything before it, however you can purchase new upgrades with rebirth points. 
+These can be both basic stat upgrades and Quality of life features such as the \"Click All\" button. 
+
+"
+horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 3
 
 [node name="RightBarBackground" type="MeshInstance2D" parent="BackgroundHolder"]
 z_index = -1
@@ -1255,7 +1322,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crafting" type="Node2D" parent="."]
-script = ExtResource("57_3a65k")
+visible = false
 
 [node name="CraftingLabel" type="Label" parent="Crafting"]
 offset_left = 715.0
@@ -1573,6 +1640,63 @@ text = "Give 1k RP
 "
 script = ExtResource("57_bgpt6")
 
+[node name="RightBarButtons" type="Node2D" parent="."]
+script = ExtResource("71_duxql")
+
+[node name="ExitButton" type="Button" parent="RightBarButtons"]
+offset_left = 1792.0
+offset_top = 1049.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+text = "Exit"
+script = ExtResource("72_twfea")
+
+[node name="Options" type="Button" parent="RightBarButtons"]
+offset_left = 1792.0
+offset_top = 1016.0
+offset_right = 1920.0
+offset_bottom = 1047.0
+text = "Options"
+
+[node name="InfoButton" type="Button" parent="RightBarButtons"]
+offset_left = 1792.0
+offset_top = 983.0
+offset_right = 1920.0
+offset_bottom = 1014.0
+text = "Info"
+
+[node name="Combat" type="Button" parent="RightBarButtons"]
+offset_left = 1792.0
+offset_top = 81.0
+offset_right = 1920.0
+offset_bottom = 112.0
+text = "Combat"
+
+[node name="Crafting" type="Button" parent="RightBarButtons"]
+offset_left = 1792.0
+offset_top = 115.0
+offset_right = 1920.0
+offset_bottom = 146.0
+text = "Crafting"
+
+[node name="Combat" type="Node2D" parent="."]
+visible = false
+
+[node name="CombatLabel" type="Label" parent="Combat"]
+offset_left = 712.0
+offset_top = 81.0
+offset_right = 1792.0
+offset_bottom = 146.0
+text = "Combat"
+label_settings = SubResource("LabelSettings_6w3ow")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Combat"]
+position = Vector2(1269, 603)
+scale = Vector2(14.4375, 11.2188)
+texture = ExtResource("73_btq0n")
+
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FishingBar/FishingCheckButton3" to="Clickers/SkillBars/FishingBar/FishingProgressBar" method="_on_fishing_check_button_3_toggled"]
@@ -1633,3 +1757,8 @@ script = ExtResource("57_bgpt6")
 [connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth10" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth10" method="_on_pressed"]
 [connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth100" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth100" method="_on_pressed"]
 [connection signal="pressed" from="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth1k" to="DevMenu/DevMenuButton/DevMenuGrid/GiveRebirth1k" method="_on_pressed"]
+[connection signal="pressed" from="RightBarButtons/ExitButton" to="RightBarButtons/ExitButton" method="_on_pressed"]
+[connection signal="pressed" from="RightBarButtons/Options" to="RightBarButtons" method="_on_options_pressed"]
+[connection signal="pressed" from="RightBarButtons/InfoButton" to="RightBarButtons" method="_on_info_button_pressed"]
+[connection signal="pressed" from="RightBarButtons/Combat" to="RightBarButtons" method="_on_combat_pressed"]
+[connection signal="pressed" from="RightBarButtons/Crafting" to="RightBarButtons" method="_on_crafting_pressed"]

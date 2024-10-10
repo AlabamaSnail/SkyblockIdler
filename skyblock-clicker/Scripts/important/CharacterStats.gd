@@ -128,6 +128,7 @@ var buyAllButtonSRunlock = false
 
 
 var craftingUnlocked = false
+var combatUnlocked = false
 var rebirthUnlocked = false
 # Initialize JSON instance
 var json = JSON.new()
@@ -220,7 +221,7 @@ func save_datapt2() -> void:
 			"buyAllButtonRunlock" : buyAllButtonRunlock,
 			"buyAllButtonSRunlock" : buyAllButtonSRunlock,
 			"rebirthUnlocked" : rebirthUnlocked,
-			
+			"combatUnlocked" : combatUnlocked,
 		}
 
 	# Ensure save is completed before exiting
@@ -307,6 +308,7 @@ func load_datapt2() -> void:
 		luckToggle = data.get("luckToggle", false)
 		
 		craftingUnlocked = data.get("craftingUnlocked", false)
+		combatUnlocked = data.get("combatUnlocked", false)
 		rebirthUnlocked = data.get("rebirthUnlocked", false)
 		buyAllButtonSRunlock = data.get("buyAllButtonSRunlock", false)
 		buyAllButtonRunlock = data.get("buyAllButtonRunlock", false)

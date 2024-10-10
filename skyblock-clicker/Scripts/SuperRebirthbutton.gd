@@ -63,6 +63,7 @@ func _on_pressed() -> void:
 		StatHolder.farmingRebirthUpgrade = 0
 		StatHolder.fishingRebirthUpgrade = 0
 		StatHolder.craftingUnlocked = true
+		StatHolder.combatUnlocked = true
 		
 		StatHolder.superRebirthPoints += calculate_rebirth_points()
 		maxRebirthPoints = 0
