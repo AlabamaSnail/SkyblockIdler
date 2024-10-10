@@ -123,7 +123,7 @@ var luckSkillUpgrade = 0
 var luckToggle = false
 
 var totalKills = Big.new(0)
-
+var enemyType = Big.new(0)
 
 var buyAllButtonRunlock = false
 var buyAllButtonSRunlock = false
@@ -225,6 +225,7 @@ func save_datapt2() -> void:
 			"rebirthUnlocked" : rebirthUnlocked,
 			"combatUnlocked" : combatUnlocked,
 			"totalKills": totalKills.toString(),
+			"enemyType": enemyType.toString(),
 		}
 
 	# Ensure save is completed before exiting
@@ -316,6 +317,7 @@ func load_datapt2() -> void:
 		buyAllButtonSRunlock = data.get("buyAllButtonSRunlock", false)
 		buyAllButtonRunlock = data.get("buyAllButtonRunlock", false)
 		totalKills = Big.new(data.get("totalKills", "0"))
+		enemyType = Big.new(data.get("enemyType", "0"))
 
 		print("Player data loaded successfully.")
 	else:

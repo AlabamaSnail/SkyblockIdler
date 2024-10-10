@@ -256,19 +256,19 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/normal = SubResource("StyleBoxFlat_5yhnr")
 
 [sub_resource type="Gradient" id="Gradient_mh4jy"]
-offsets = PackedFloat32Array(0, 0.993056)
-colors = PackedColorArray(0, 0.886275, 0, 1, 0, 1, 0, 1)
+colors = PackedColorArray(0.890196, 0, 0, 1, 0.995856, 0.0116569, 3.85046e-07, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sbtbh"]
 gradient = SubResource("Gradient_mh4jy")
+fill_to = Vector2(0.980583, 0.0145631)
 
-[sub_resource type="Gradient" id="Gradient_7sdv4"]
-offsets = PackedFloat32Array(0.576389, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_lmpxo"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_srw8l"]
-gradient = SubResource("Gradient_7sdv4")
-fill_from = Vector2(0, 1)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vleix"]
+gradient = SubResource("Gradient_lmpxo")
+fill_from = Vector2(0.548544, 0.00970874)
+fill_to = Vector2(0.519417, 0.883495)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6w3ow"]
 font_size = 64
@@ -1712,7 +1712,7 @@ offset_bottom = 320.0
 allow_lesser = true
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_sbtbh")
-texture_progress = SubResource("GradientTexture2D_srw8l")
+texture_progress = SubResource("GradientTexture2D_vleix")
 script = ExtResource("74_ugwn2")
 
 [node name="CombatLabel" type="Label" parent="Combat"]
@@ -1752,6 +1752,22 @@ text = "Total Kills: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("76_q823x")
+
+[node name="NextEnemyType" type="Button" parent="Combat"]
+offset_left = 954.0
+offset_top = 240.0
+offset_right = 992.0
+offset_bottom = 336.0
+theme_override_font_sizes/font_size = 64
+text = "↑"
+
+[node name="PreviousEnemyType" type="Button" parent="Combat"]
+offset_left = 1504.0
+offset_top = 240.0
+offset_right = 1542.0
+offset_bottom = 336.0
+theme_override_font_sizes/font_size = 64
+text = "↓"
 
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
@@ -1819,3 +1835,5 @@ script = ExtResource("76_q823x")
 [connection signal="pressed" from="RightBarButtons/Combat" to="RightBarButtons" method="_on_combat_pressed"]
 [connection signal="pressed" from="RightBarButtons/Crafting" to="RightBarButtons" method="_on_crafting_pressed"]
 [connection signal="pressed" from="Combat/MainEnemy" to="Combat" method="_on_main_enemy_pressed"]
+[connection signal="pressed" from="Combat/NextEnemyType" to="Combat" method="_on_next_enemy_type_pressed"]
+[connection signal="pressed" from="Combat/PreviousEnemyType" to="Combat" method="_on_previous_enemy_type_pressed"]
