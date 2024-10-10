@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://gvabfncr6aor"]
+[gd_scene load_steps=124 format=3 uid="uid://gvabfncr6aor"]
 
 [ext_resource type="Script" path="res://foraging_multi.gd" id="2_guh8q"]
 [ext_resource type="Script" path="res://Scripts/LevelBarScripts/foraging_progress_bar.gd" id="3_kip2h"]
@@ -73,6 +73,9 @@
 [ext_resource type="Script" path="res://BigWindowManager.gd" id="71_duxql"]
 [ext_resource type="Script" path="res://exit_button.gd" id="72_twfea"]
 [ext_resource type="Texture2D" uid="uid://bwyva47nlrdpg" path="res://Test.png" id="73_btq0n"]
+[ext_resource type="Script" path="res://combatManager.gd" id="73_o33ld"]
+[ext_resource type="Script" path="res://enemy_health_bar.gd" id="74_ugwn2"]
+[ext_resource type="Script" path="res://total_kills_label.gd" id="76_q823x"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_bdxdn"]
 
@@ -252,11 +255,29 @@ bg_color = Color(0.478602, 0.271663, 0.0385115, 1)
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/normal = SubResource("StyleBoxFlat_5yhnr")
 
+[sub_resource type="Gradient" id="Gradient_mh4jy"]
+offsets = PackedFloat32Array(0, 0.993056)
+colors = PackedColorArray(0, 0.886275, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sbtbh"]
+gradient = SubResource("Gradient_mh4jy")
+
+[sub_resource type="Gradient" id="Gradient_7sdv4"]
+offsets = PackedFloat32Array(0.576389, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srw8l"]
+gradient = SubResource("Gradient_7sdv4")
+fill_from = Vector2(0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_6w3ow"]
 font_size = 64
 font_color = Color(0.978851, 0.128225, 0.493988, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k71u7"]
+font_size = 36
 
 [node name="Scene" type="Node2D"]
 
@@ -282,7 +303,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="CombatBackground" type="MeshInstance2D" parent="BackgroundHolder"]
-visible = false
 position = Vector2(1252, 580)
 scale = Vector2(1080, 1000)
 mesh = SubResource("QuadMesh_bdxdn")
@@ -320,12 +340,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InfoBackground" type="MeshInstance2D" parent="BackgroundHolder"]
+visible = false
 position = Vector2(1252, 580.5)
 scale = Vector2(1080, 999)
 mesh = SubResource("QuadMesh_jdnaq")
 texture = SubResource("GradientTexture2D_d663c")
 
 [node name="InfoLabels" type="Node2D" parent="BackgroundHolder"]
+visible = false
 
 [node name="Label" type="Label" parent="BackgroundHolder/InfoLabels"]
 offset_left = 713.0
@@ -1680,7 +1702,18 @@ offset_bottom = 146.0
 text = "Crafting"
 
 [node name="Combat" type="Node2D" parent="."]
-visible = false
+script = ExtResource("73_o33ld")
+
+[node name="EnemyHealthBar" type="TextureProgressBar" parent="Combat"]
+offset_left = 992.0
+offset_top = 256.0
+offset_right = 1504.0
+offset_bottom = 320.0
+allow_lesser = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_sbtbh")
+texture_progress = SubResource("GradientTexture2D_srw8l")
+script = ExtResource("74_ugwn2")
 
 [node name="CombatLabel" type="Label" parent="Combat"]
 offset_left = 712.0
@@ -1692,10 +1725,33 @@ label_settings = SubResource("LabelSettings_6w3ow")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Combat"]
-position = Vector2(1269, 603)
-scale = Vector2(14.4375, 11.2188)
-texture = ExtResource("73_btq0n")
+[node name="MainEnemy" type="TextureButton" parent="Combat"]
+offset_left = 992.0
+offset_top = 384.0
+offset_right = 1504.0
+offset_bottom = 896.0
+texture_normal = ExtResource("73_btq0n")
+stretch_mode = 0
+
+[node name="HealthBarLabel" type="Label" parent="Combat"]
+offset_left = 992.0
+offset_top = 208.0
+offset_right = 1504.0
+offset_bottom = 258.0
+text = "Health: 1.043k/1.052k"
+label_settings = SubResource("LabelSettings_k71u7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalKillsLabel" type="Label" parent="Combat"]
+offset_left = 1088.0
+offset_top = 184.0
+offset_right = 1408.0
+offset_bottom = 207.0
+text = "Total Kills: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("76_q823x")
 
 [connection signal="toggled" from="Clickers/SkillBars/ForagingBar/CheckButton" to="Clickers/SkillBars/ForagingBar/ForagingProgressBar" method="_on_check_button_toggled"]
 [connection signal="toggled" from="Clickers/SkillBars/FarmingBar/FarmingCheckButton2" to="Clickers/SkillBars/FarmingBar/FarmingProgressBar" method="_on_farming_check_button_2_toggled"]
@@ -1762,3 +1818,4 @@ texture = ExtResource("73_btq0n")
 [connection signal="pressed" from="RightBarButtons/InfoButton" to="RightBarButtons" method="_on_info_button_pressed"]
 [connection signal="pressed" from="RightBarButtons/Combat" to="RightBarButtons" method="_on_combat_pressed"]
 [connection signal="pressed" from="RightBarButtons/Crafting" to="RightBarButtons" method="_on_crafting_pressed"]
+[connection signal="pressed" from="Combat/MainEnemy" to="Combat" method="_on_main_enemy_pressed"]

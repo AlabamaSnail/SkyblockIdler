@@ -122,13 +122,15 @@ var luckRebirthUpgrade = 0
 var luckSkillUpgrade = 0
 var luckToggle = false
 
+var totalKills = Big.new(0)
+
 
 var buyAllButtonRunlock = false
 var buyAllButtonSRunlock = false
 
 
 var craftingUnlocked = false
-var combatUnlocked = false
+var combatUnlocked = true
 var rebirthUnlocked = false
 # Initialize JSON instance
 var json = JSON.new()
@@ -222,6 +224,7 @@ func save_datapt2() -> void:
 			"buyAllButtonSRunlock" : buyAllButtonSRunlock,
 			"rebirthUnlocked" : rebirthUnlocked,
 			"combatUnlocked" : combatUnlocked,
+			"totalKills": totalKills.toString(),
 		}
 
 	# Ensure save is completed before exiting
@@ -312,6 +315,7 @@ func load_datapt2() -> void:
 		rebirthUnlocked = data.get("rebirthUnlocked", false)
 		buyAllButtonSRunlock = data.get("buyAllButtonSRunlock", false)
 		buyAllButtonRunlock = data.get("buyAllButtonRunlock", false)
+		totalKills = Big.new(data.get("totalKills", "0"))
 
 		print("Player data loaded successfully.")
 	else:

@@ -33,7 +33,13 @@ func _ready() -> void:
 	InfoLabels = get_parent().get_node("BackgroundHolder").get_node("InfoLabels")
 
 
-	Everything = [CraftingNotUnlockedLabel, CraftingBackground, CombatNotUnlockedLabel, CombatBackground, InfoBackground, InfoLabels, CraftingStuff]
+	Everything = [CraftingNotUnlockedLabel, CraftingBackground, CombatNotUnlockedLabel, CombatBackground, InfoBackground, InfoLabels, CraftingStuff, CombatStuff]
+	
+	
+	for i in Everything:
+		i.visible = false
+	InfoBackground.visible = true
+	InfoLabels.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
