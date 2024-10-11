@@ -11,7 +11,7 @@ func _ready() -> void:
 	EnemyHealthLabel = $HealthBarLabel
 
 func _process(delta: float) -> void:
-	MaxHealth = Big.new(1000).toThePowerOf(StatHolder.enemyType.toFloat() + 1)
+	MaxHealth = Big.new(1000).toThePowerOf(StatHolder.enemyType.plus(1).toFloat())
 	EnemyHealthLabel.text = "Health: " + CurrentHealth.toAA() + " / " + MaxHealth.toAA()
 	
 	# Update health bar value based on current health as a percentage
@@ -34,7 +34,7 @@ func _on_main_enemy_pressed() -> void:
 	EnemyHealthBar.value = percentage_health
 	
 	# If the health bar is empty (enemy is defeated), handle kill logic
-	if EnemyHealthBar.value <= 1:
+	if CurrentHealth.isLessThan(1):
 		StatHolder.totalKills.plusEquals(Big.new(1))
 		# Optionally reset the enemy for the next fight
 		_reset_enemy_health()
@@ -50,5 +50,5 @@ func _on_previous_enemy_type_pressed() -> void:
 
 # Function to reset health when a new enemy type is selected or when defeated
 func _reset_enemy_health() -> void:
-	MaxHealth = Big.new(1000).toThePowerOf(StatHolder.enemyType.toFloat())
+	MaxHealth = Big.new(1000).toThePowerOf(StatHolder.enemyType.plus(1).toFloat())
 	CurrentHealth = MaxHealth
