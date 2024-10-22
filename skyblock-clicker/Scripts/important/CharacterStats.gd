@@ -89,7 +89,7 @@ var MoneyminingToggle = false
 var MoneyfarmingToggle = false
 var MoneyfishingToggle = false
 
-var MoneyforagingStacks = 1
+var MoneyforagingStacks = Big.new(1)
 var MoneyminingStacks = 1
 var MoneyfarmingStacks = 1
 var MoneyfishingStacks = 1
@@ -130,7 +130,7 @@ var buyAllButtonSRunlock = false
 
 
 var craftingUnlocked = false
-var combatUnlocked = true
+var combatUnlocked = false
 var rebirthUnlocked = false
 # Initialize JSON instance
 var json = JSON.new()

@@ -13,7 +13,7 @@ func _ready():
 
 # Update the MForagingStacks label text to display current stacks
 func _update_stacks_label():
-	label_stacks.text = "Money Per: $%s" % Big.new(StatHolder.MoneyforagingStacks).toAA()
+	label_stacks.text = "Money Per: $%s" % StatHolder.MoneyforagingStacks.toAA()
 
 # Called when the first button is pressed
 func _on_m_foraging_button_pressed():
@@ -24,7 +24,7 @@ func _process(delta):
 	_update_stacks_label()
 	if StatHolder.MoneyforagingToggle:
 		# Increase the progress based on effective speed
-		StatHolder.MoneyforagingProgress += (StatHolder.foragingMoneySpeed / StatHolder.MoneyforagingStacks) * delta
+		StatHolder.MoneyforagingProgress += (StatHolder.foragingMoneySpeed / StatHolder.MoneyforagingStacks.toFloat()) * delta
 
 		# Clamp the progress to a maximum of 100
 		if StatHolder.MoneyforagingProgress > 100:
@@ -42,7 +42,7 @@ func _on_m_foraging_button_2_pressed() -> void:
 		# Recalculate the current skill speed at the moment the button is pressed
 		
 		# Check if skill speed is greater than 100 and apply stack doubling logic
-		StatHolder.MoneyforagingStacks *= 2  # Double the stacks value
+		StatHolder.MoneyforagingStacks.timesEquals(2)  # Double the stacks value
 		StatHolder.foragingMoneySpeed -= 100  # Permanently subtract 100 from skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 
@@ -52,8 +52,8 @@ func _on_mf_stacks_down_pressed() -> void:
 	# Recalculate the current skill speed at the moment the button is pressed
 
 	# Ensure stacks don't go below 1, and increase skill_speed if applicable
-	if StatHolder.MoneyforagingStacks > 1:
-		StatHolder.MoneyforagingStacks /= 2  # Halve the stacks value
+	if StatHolder.MoneyforagingStacks.isGreaterThan(1):
+		StatHolder.MoneyforagingStacks.dividedByEquals(2)  # Halve the stacks value
 		StatHolder.foragingMoneySpeed += 100  # Add 100 back to skill_speed
 		_update_stacks_label()  # Update the label to reflect the new stacks value
 

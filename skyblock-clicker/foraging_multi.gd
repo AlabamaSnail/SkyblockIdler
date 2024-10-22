@@ -10,6 +10,6 @@ func _process(delta: float) -> void:
 	* pow(2.0, (StatHolder.foragingSkillUpgrade * 1.0))
 	* pow(2.0, (StatHolder.skillRebirthUpgrade * 1.0)))
 	
-	StatHolder.foragingMoneyMulti = StatHolder.MoneyforagingStacks  * pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0))
+	StatHolder.foragingMoneyMulti = StatHolder.MoneyforagingStacks.times(Big.new(pow(2.0, (StatHolder.moneyRebirthUpgrade * 1.0))))
 	StatHolder.foragingMoneySpeed = ((StatHolder.foraging * 2.5) * StatHolder.foragingTool * (1 + (StatHolder.strength * 0.025)))
 	

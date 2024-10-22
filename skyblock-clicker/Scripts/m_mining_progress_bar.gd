@@ -13,7 +13,7 @@ func _ready():
 
 # Update the MForagingStacks label text to display current stacks
 func _update_stacks_label():
-	label_stacks.text = "Money Per: $%s" % str(StatHolder.MoneyminingStacks)
+	label_stacks.text = "Money Per: $%s" % Big.new(StatHolder.MoneyminingStacks).toAA()
 
 # Called when the first button is pressed
 func _on_m_mining_button_pressed():

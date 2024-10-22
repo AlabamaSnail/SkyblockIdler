@@ -1,0 +1,108 @@
+extends Button
+
+func _ready() -> void:
+	update_buy_all_button_text()
+
+func _process(delta: float) -> void:
+	update_buy_all_button_text()
+
+func _on_pressed() -> void:
+	buy_all_tools_evenly()
+
+func update_buy_all_button_text() -> void:
+	var total_upgrades = calculate_total_possible_upgrades()
+	self.text = "Buy All : " + str(total_upgrades)
+
+func calculate_total_possible_upgrades() -> int:
+	var farming = StatHolder.farmingSkillUpgrade
+	var fishing = StatHolder.fishingSkillUpgrade
+	var foraging = StatHolder.foragingSkillUpgrade
+	var mining = StatHolder.miningSkillUpgrade
+
+	# Create a copy of the player's money by creating a new Big instance
+	var money = Big.new(StatHolder.money)  # Duplicate the money value
+	var upgrades = 0
+
+	while true:
+		var lowest_tool = get_temp_lowest_tool_level(farming, fishing, foraging, mining)
+		var cost = Big.new(calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining))
+		
+		if money.isGreaterThanOrEqualTo(cost):
+			money.minusEquals(cost) # Modify the copy, not the actual player's money
+			upgrades += 1
+			match lowest_tool:
+				"farming":
+					farming += 1
+				"fishing":
+					fishing += 1
+				"foraging":
+					foraging += 1
+				"mining":
+					mining += 1
+		else:
+			break
+
+	return upgrades
+
+func buy_all_tools_evenly() -> void:
+	var farming = StatHolder.farmingSkillUpgrade
+	var fishing = StatHolder.fishingSkillUpgrade
+	var foraging = StatHolder.foragingSkillUpgrade
+	var mining = StatHolder.miningSkillUpgrade
+
+	var money = StatHolder.money
+
+	while true:
+		var lowest_tool = get_temp_lowest_tool_level(farming, fishing, foraging, mining)
+		var cost = Big.new(calculate_tool_upgrade_cost(lowest_tool, farming, fishing, foraging, mining))
+		
+		if money.isGreaterThanOrEqualTo(cost):
+			money.minusEquals(cost)
+			match lowest_tool:
+				"farming":
+					farming += 1
+					StatHolder.farmingSkillUpgrade += 1
+				"fishing":
+					fishing += 1
+					StatHolder.fishingSkillUpgrade += 1
+				"foraging":
+					foraging += 1
+					StatHolder.foragingSkillUpgrade += 1
+				"mining":
+					mining += 1
+					StatHolder.miningSkillUpgrade += 1
+		else:
+			break
+
+	# Update money after purchasing all upgrades
+	StatHolder.money = money
+
+func get_temp_lowest_tool_level(farming, fishing, foraging, mining) -> String:
+	var levels = {
+		"farming": farming,
+		"fishing": fishing,
+		"foraging": foraging,
+		"mining": mining
+	}
+
+	var lowest_tool = "farming"
+	var lowest_level = farming
+
+	for tool in levels.keys():
+		if levels[tool] < lowest_level:
+			lowest_tool = tool
+			lowest_level = levels[tool]
+
+	return lowest_tool
+
+func calculate_tool_upgrade_cost(tool_name: String, farming, fishing, foraging, mining) -> Big:
+	match tool_name:
+		"farming":
+			return Big.new((farming ** 4 + 200) / 2)
+		"fishing":
+			return Big.new((fishing ** 4 + 200) / 2)
+		"foraging":
+			return Big.new((foraging ** 4 + 200) / 2)
+		"mining":
+			return Big.new((mining ** 4 + 200) / 2)
+	return Big.new(0)
